@@ -1,0 +1,64 @@
+
+    <div class="space-y-6 animate-fade-in">
+      <div>
+        <h1 class="page-header">Policy Comparison</h1>
+        <p class="page-subheader">Select up to 3 policies to compare side-by-side</p>
+      </div>
+
+      <!-- Policy Selector -->
+      <div class="card p-5">
+        <p class="font-semibold text-dark-gray mb-3 text-sm">Select Policies to Compare:</p>
+        <div class="flex flex-wrap gap-2">
+          @for (p of allPolicies(); track p.policyId) {
+            <button (click)="togglePolicy(p)"
+              class="px-4 py-1.5 rounded-full text-sm font-medium border transition-all"
+              [class]="isSelected(p) ? 'bg-primary-maroon text-white border-primary-maroon shadow-maroon' : 'bg-white border-gray-200 text-medium-gray hover:border-primary-maroon hover:text-primary-maroon'"
+              [disabled]="selected().length >= 3 && !isSelected(p)">
+              {{ p.policyName }}
+            </button>
+          }
+        </div>
+      </div>
+
+      @if (selected().length > 0) {
+        <div class="overflow-x-auto rounded-2xl border border-gray-200">
+          <table class="w-full text-sm">
+            <thead>
+              <tr>
+                <th class="bg-gray-50 px-5 py-4 text-left font-semibold text-dark-gray border-b border-gray-200 w-48">Feature</th>
+                @for (p of selected(); track p.policyId) {
+                  <th class="bg-primary-maroon/5 px-5 py-4 text-center border-b border-gray-200 min-w-[200px]">
+                    <div class="font-bold text-primary-maroon">{{ p.policyName }}</div>
+                    <div class="text-xs text-medium-gray font-normal">{{ p.durationYears }} years</div>
+                  </th>
+                }
+              </tr>
+            </thead>
+            <tbody>
+              @for (row of compareRows; track row.label) {
+                <tr class="hover:bg-gray-50 transition-colors">
+                  <td class="px-5 py-3.5 font-medium text-dark-gray border-b border-gray-100">{{ row.label }}</td>
+                  @for (p of selected(); track p.policyId) {
+                    <td class="px-5 py-3.5 text-center border-b border-gray-100" [innerHTML]="row.getValue(p)"></td>
+                  }
+                </tr>
+              }
+              <tr>
+                <td class="px-5 py-4"></td>
+                @for (p of selected(); track p.policyId) {
+                  <td class="px-5 py-4 text-center">
+                    <a routerLink="/applications/apply" class="btn-primary text-xs px-5 py-2">Apply →</a>
+                  </td>
+                }
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      } @else {
+        <div class="card p-16 text-center">
+          <h3 class="font-bold text-dark-gray text-xl mb-2">Choose policies to compare</h3>
+          <p class="text-medium-gray text-sm">Select 2-3 policies above to compare features side by side</p>
+        </div>
+      }
+    </div>
+  

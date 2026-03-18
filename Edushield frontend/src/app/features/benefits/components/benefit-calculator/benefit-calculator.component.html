@@ -1,0 +1,111 @@
+<div class="space-y-6 animate-fade-in">
+  <div>
+    <h1 class="page-header">Benefit Calculator</h1>
+    <p class="page-subheader">Calculate your projected maturity, death, and surrender benefits</p>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <!-- Controls -->
+    <div class="card p-6 space-y-5">
+      <h3 class="font-bold text-dark-gray">Configure Your Plan</h3>
+
+      <div>
+        <label for="premiumRange" class="form-label">Monthly Premium: <strong class="text-primary-maroon">₹{{ premium()
+            }}</strong></label>
+        <input type="range" id="premiumRange" name="premium" [value]="premiumVal" (input)="onPremiumChange($event)"
+          min="1000" max="15000" step="500"
+          class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary-maroon mt-2">
+        <div class="flex justify-between text-xs text-medium-gray mt-1"><span>₹1,000</span><span>₹15,000</span></div>
+      </div>
+
+      <div>
+        <label for="durationRange" class="form-label">Duration: <strong class="text-primary-maroon">{{ duration() }}
+            years</strong></label>
+        <input type="range" id="durationRange" name="duration" [value]="durationVal" (input)="onDurationChange($event)"
+          min="5" max="25" step="1"
+          class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary-maroon mt-2">
+        <div class="flex justify-between text-xs text-medium-gray mt-1"><span>5 yrs</span><span>25 yrs</span></div>
+      </div>
+
+      <div>
+        <label for="bonusRange" class="form-label">Bonus Rate: <strong class="text-primary-maroon">{{ bonus()
+            }}%</strong></label>
+        <input type="range" id="bonusRange" name="bonus" [value]="bonusVal" (input)="onBonusChange($event)" min="5"
+          max="20" step="1"
+          class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary-maroon mt-2">
+      </div>
+
+      <!-- Benefit Type Cards -->
+      <div class="grid grid-cols-3 gap-3">
+        @for (b of benefitTypes; track b.type) {
+        <div (click)="selectedBenefit.set(b.type)"
+          class="p-3 rounded-xl border-2 text-center cursor-pointer transition-all"
+          [class]="selectedBenefit() === b.type ? 'border-primary-maroon bg-primary-maroon/5' : 'border-gray-200 hover:border-primary-maroon/30'">
+          <div class="text-xl mb-1">{{ b.icon }}</div>
+          <p class="text-[11px] font-bold text-dark-gray uppercase tracking-tighter">{{ b.label }}</p>
+        </div>
+        }
+      </div>
+
+      <!-- Calculation Result -->
+      <div class="bg-maroon-gradient rounded-xl p-5 text-white space-y-3">
+        <p class="text-white/70 text-xs">{{ selectedBenefit() }} Benefit Amount</p>
+        <p class="text-3xl font-bold">₹{{ currentBenefit() | number }}</p>
+        <div class="grid grid-cols-3 gap-2 pt-3 border-t border-white/20 text-center">
+          <div>
+            <p class="text-white/60 text-[10px]">Total Paid</p>
+            <p class="font-semibold text-sm">₹{{ totalPaid() | number }}</p>
+          </div>
+          <div>
+            <p class="text-white/60 text-[10px]">Bonus</p>
+            <p class="font-semibold text-sm text-accent-gold">₹{{ bonusAmt() | number }}</p>
+          </div>
+          <div>
+            <p class="text-white/60 text-[10px]">CAGR</p>
+            <p class="font-semibold text-sm text-emerald-300">{{ cagr() }}%</p>
+          </div>
+        </div>
+      </div>
+
+      <a routerLink="/applications/apply" class="btn-primary w-full text-center block">Apply for This Plan →</a>
+    </div>
+
+    <!-- Projection Chart -->
+    <div class="card p-6 flex flex-col">
+      <h3 class="font-bold text-dark-gray mb-1">Year-wise Growth Projection</h3>
+      <p class="text-[11px] text-medium-gray mb-6 italic">*Projected values based on selected bonus rate</p>
+      <div class="relative h-[320px] w-full">
+        <canvas #projChart></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Calculation Breakdown -->
+  <div class="card p-6">
+    <h3 class="font-bold text-dark-gray mb-4">Benefit Breakdown</h3>
+    <div class="overflow-x-auto">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Year</th>
+            <th>Total Paid</th>
+            <th>Bonus Amount</th>
+            <th>Loyalty Bonus</th>
+            <th>Maturity Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (row of projectionRows(); track row.year) {
+          <tr>
+            <td class="font-medium">Year {{ row.year }}</td>
+            <td>₹{{ row.paid | number }}</td>
+            <td class="text-emerald-600">₹{{ row.bonus | number }}</td>
+            <td class="text-accent-gold font-medium">₹{{ row.loyalty | number }}</td>
+            <td class="font-bold text-primary-maroon">₹{{ row.total | number }}</td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

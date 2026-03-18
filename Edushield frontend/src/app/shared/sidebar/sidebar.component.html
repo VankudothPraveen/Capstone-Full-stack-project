@@ -1,0 +1,65 @@
+<!-- Mobile overlay -->
+@if (open()) {
+<div class="fixed inset-0 bg-black/50 z-20 lg:hidden" (click)="open.set(false)"></div>
+}
+
+<!-- Sidebar -->
+<aside
+  class="fixed lg:static lg:h-full inset-y-0 left-0 z-30 flex flex-col bg-deep-maroon text-white transition-all duration-300 ease-in-out shadow-xl"
+  [class.w-64]="open()" [class.w-0]="!open() && isMobile()" [class.lg:w-64]="open()" [class.lg:w-16]="!open()">
+
+  <!-- Logo -->
+  <div class="flex items-center gap-3 px-4 py-5 border-b border-white/10 min-h-[64px]">
+    <div
+      class="w-9 h-9 border border-white/20 bg-white shadow-sm rounded-lg flex items-center justify-center flex-shrink-0">
+      <img src="image.png" alt="EduShield" class="w-7 h-7 object-contain">
+    </div>
+    @if (open()) {
+    <div class="overflow-hidden">
+      <p class="font-extrabold text-sm leading-tight tracking-tight text-white">
+        Edu<span class="text-accent-gold">Shield</span>
+      </p>
+      <p class="text-[10px] text-white/60 font-medium tracking-widest uppercase">Insurance</p>
+    </div>
+    }
+  </div>
+
+  <!-- Nav Items -->
+  <nav class="flex-1 overflow-y-auto py-4 space-y-1 px-2 scrollbar-hide">
+    @for (item of filteredNavItems(); track item.label) {
+    <a [routerLink]="item.route" [queryParams]="item.queryParams || {}"
+      [routerLinkActiveOptions]="item.queryParams ? {exact: true} : {exact: false}"
+      routerLinkActive="bg-white/10 text-white border-l-2 border-accent-gold"
+      class="flex items-center gap-3 px-3 py-2.5 rounded-r-lg text-sm font-medium text-white/70 hover:bg-white/15 hover:text-white transition-colors duration-150 group"
+      [title]="!open() ? item.label : ''" (click)="closeMobile()">
+      <span class="flex-shrink-0" [innerHTML]="item.icon"></span>
+      @if (open()) {
+      <span class="truncate">{{ item.label }}</span>
+      }
+    </a>
+    }
+  </nav>
+
+  <!-- User Info at bottom -->
+  @if (auth.currentUser()) {
+  <div class="border-t border-white/10 p-3">
+    <div class="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors"
+      (click)="logout()">
+      <div
+        class="w-8 h-8 bg-accent-gold rounded-full flex items-center justify-center flex-shrink-0 text-deep-maroon font-bold text-xs">
+        {{ auth.currentUser()!.name.charAt(0) }}
+      </div>
+      @if (open()) {
+      <div class="overflow-hidden flex-1 min-w-0">
+        <p class="text-sm font-medium text-white truncate">{{ auth.currentUser()!.name }}</p>
+        <p class="text-xs text-white/60 truncate">{{ displayRole() }}</p>
+      </div>
+      <svg class="w-4 h-4 text-white/40 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+      </svg>
+      }
+    </div>
+  </div>
+  }
+</aside>

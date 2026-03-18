@@ -1,0 +1,94 @@
+<div class="space-y-6 animate-fade-in">
+  <div class="flex items-center justify-between">
+    <div>
+      <h1 class="page-header">Policy Management</h1>
+      <p class="page-subheader">Create, edit and manage insurance policies</p>
+    </div>
+    <button (click)="showForm.update(v=>!v)" class="btn-primary">{{ showForm() ? 'Cancel' : 'Add Policy' }}</button>
+  </div>
+
+  <div class="relative w-full max-w-sm">
+    <input type="text" [ngModel]="searchQuery()" (ngModelChange)="searchQuery.set($event)"
+      placeholder="Search policy name, description..." 
+      class="w-full pl-9 pr-4 py-2 text-xs border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-maroon/20 focus:border-primary-maroon outline-none transition-all">
+    <svg class="w-4 h-4 absolute left-3 top-2.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+  </div>
+
+  @if (showForm()) {
+  <div class="card p-6 animate-fade-in">
+    <h3 class="font-bold text-dark-gray mb-5">{{ editingId() ? 'Edit Policy' : 'Add New Policy' }}</h3>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="sm:col-span-2"><label for="policyName" class="form-label">Policy Name</label><input id="policyName"
+          name="policyName" formControlName="policyName" class="form-input" placeholder="EduShield Premium"></div>
+      <div><label for="basePremium" class="form-label">Base Premium (₹/mo)</label><input type="number" id="basePremium"
+          name="basePremium" formControlName="basePremium" class="form-input"></div>
+      <div><label for="durationYears" class="form-label">Duration (years)</label><input type="number" id="durationYears"
+          name="durationYears" formControlName="durationYears" class="form-input"></div>
+      <div><label for="bonusPercentage" class="form-label">Bonus %</label><input type="number" id="bonusPercentage"
+          name="bonusPercentage" formControlName="bonusPercentage" class="form-input"></div>
+      <div><label for="riskCoverageAmount" class="form-label">Coverage Amount (₹)</label><input type="number"
+          id="riskCoverageAmount" name="riskCoverageAmount" formControlName="riskCoverageAmount" class="form-input">
+      </div>
+      <div><label for="minChildAge" class="form-label">Min Child Age</label><input type="number" id="minChildAge"
+          name="minChildAge" formControlName="minChildAge" class="form-input"></div>
+      <div><label for="maxChildAge" class="form-label">Max Child Age</label><input type="number" id="maxChildAge"
+          name="maxChildAge" formControlName="maxChildAge" class="form-input"></div>
+      <div><label for="maturityBenefitAmount" class="form-label">Maturity Benefit (₹)</label><input type="number"
+          id="maturityBenefitAmount" name="maturityBenefitAmount" formControlName="maturityBenefitAmount"
+          class="form-input"></div>
+      <div><label for="deathBenefitMultiplier" class="form-label">Death Benefit Multiplier</label><input type="number"
+          step="0.1" id="deathBenefitMultiplier" name="deathBenefitMultiplier" formControlName="deathBenefitMultiplier"
+          class="form-input"></div>
+      <div class="sm:col-span-2"><label for="description" class="form-label">Description</label><textarea
+          id="description" name="description" formControlName="description" class="form-input resize-none"
+          rows="2"></textarea></div>
+      <div class="flex items-center gap-2 sm:col-span-2">
+        <input type="checkbox" formControlName="waiverOfPremium" id="waiver" class="w-4 h-4 accent-primary-maroon">
+        <label for="waiver" class="text-sm text-dark-gray font-medium">Premium Waiver on Death</label>
+      </div>
+      <div class="sm:col-span-2 flex gap-3">
+        <button type="submit" class="btn-primary" [disabled]="form.invalid">{{ editingId() ? 'Update' : 'Create Policy'
+          }}</button>
+        <button type="button" (click)="cancelForm()" class="btn-secondary">Cancel</button>
+      </div>
+    </form>
+  </div>
+  }
+
+  <div class="card overflow-hidden">
+    <div class="overflow-x-auto">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Policy Name</th>
+            <th>Premium/mo</th>
+            <th>Duration</th>
+            <th>Coverage</th>
+            <th>Bonus</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (p of filteredPolicies(); track p.policyId) {
+          <tr>
+            <td class="font-medium text-dark-gray">{{ p.policyName }}</td>
+            <td>₹{{ p.basePremium.toLocaleString() }}</td>
+            <td>{{ p.durationYears }} yrs</td>
+            <td>₹{{ (p.riskCoverageAmount/100000).toFixed(0) }}L</td>
+            <td class="text-emerald-600 font-semibold">{{ p.bonusPercentage }}%</td>
+            <td><span class="badge" [class]="p.isActive ? 'badge-success' : 'badge-gray'">{{ p.isActive ? 'Active' :
+                'Inactive' }}</span></td>
+            <td class="flex gap-2">
+              <button (click)="editPolicy(p)" class="btn-secondary btn-sm text-xs">Edit</button>
+              <button (click)="toggleActive(p.policyId)" class="btn-sm text-xs"
+                [class]="p.isActive ? 'btn-danger' : 'btn-success'">{{ p.isActive ? 'Disable' : 'Enable' }}</button>
+              <button (click)="deletePolicy(p.policyId, p.policyName)" class="btn-danger btn-sm text-xs">Delete</button>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

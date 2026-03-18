@@ -1,0 +1,67 @@
+
+    <div class="space-y-6 animate-fade-in">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h1 class="page-header">Payment History</h1>
+          <p class="page-subheader">All premium payments and transaction records</p>
+        </div>
+        <div class="flex gap-2">
+          <a routerLink="/payments/upcoming" class="btn-secondary text-sm">Upcoming</a>
+          <a routerLink="/payments/make-payment" class="btn-primary text-sm">Pay Now</a>
+        </div>
+      </div>
+
+      <!-- Summary Cards -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        @for (s of summary(); track s.label) {
+          <div class="card p-4 text-center">
+            <p class="text-xl font-bold text-primary-maroon">{{ s.value }}</p>
+            <p class="text-xs text-medium-gray mt-1">{{ s.label }}</p>
+          </div>
+        }
+      </div>
+
+      <!-- Filter -->
+      <div class="flex gap-2 flex-wrap">
+        @for (f of filters; track f) {
+          <button (click)="activeFilter.set(f)"
+            class="px-3 py-1.5 rounded-full text-xs font-medium transition-all"
+            [class]="activeFilter() === f ? 'bg-primary-maroon text-white' : 'bg-white border border-gray-200 text-medium-gray hover:border-primary-maroon'">
+            {{ f }}
+          </button>
+        }
+      </div>
+
+      <!-- Table -->
+      <div class="card overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Subscription</th>
+                <th>Policy</th>
+                <th>Amount</th>
+                <th>Late Fee</th>
+                <th>Due Date</th>
+                <th>Payment Date</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (p of filteredPayments(); track p.paymentId) {
+                <tr>
+                  <td class="font-mono text-xs text-primary-maroon">{{ p.subscriptionNumber }}</td>
+                  <td class="font-medium text-dark-gray text-sm">{{ p.policyName }}</td>
+                  <td class="font-bold text-dark-gray">₹{{ p.amount.toLocaleString() }}</td>
+                  <td class="text-red-500">{{ p.lateFee > 0 ? '₹' + p.lateFee : '—' }}</td>
+                  <td class="text-medium-gray">{{ p.dueDate | date:'dd MMM yyyy' }}</td>
+                  <td class="text-medium-gray">{{ p.status === 'PAID' ? (p.paymentDate | date:'dd MMM yyyy') : '—' }}</td>
+                  <td><span class="badge" [class]="getStatusCls(p.status)">{{ p.status }}</span></td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  

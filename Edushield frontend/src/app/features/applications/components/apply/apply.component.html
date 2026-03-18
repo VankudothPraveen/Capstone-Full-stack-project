@@ -1,0 +1,311 @@
+<div class="max-w-3xl mx-auto space-y-6 animate-fade-in">
+  <div>
+    <h1 class="page-header">Apply for Policy</h1>
+    <p class="page-subheader">Complete the form below to apply for a child education insurance policy</p>
+  </div>
+
+  <!-- Step Indicator -->
+  <div class="card px-6 py-4">
+    <div class="flex items-center gap-0">
+      @for (step of steps; track step.id; let i = $index) {
+      <div class="flex items-center flex-1">
+        <div class="flex items-center gap-2 flex-shrink-0">
+          <div class="step-circle"
+            [class]="currentStep() > step.id ? 'completed' : currentStep() === step.id ? 'active' : 'inactive'">
+            @if (currentStep() > step.id) {
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+            } @else { {{ step.id }} }
+          </div>
+          <div class="hidden sm:block">
+            <p class="text-xs font-semibold"
+              [class]="currentStep() >= step.id ? 'text-primary-maroon' : 'text-medium-gray'">{{ step.label }}</p>
+          </div>
+        </div>
+        @if (i < steps.length - 1) { <div class="flex-1 h-0.5 mx-3"
+          [class]="currentStep() > step.id ? 'bg-primary-maroon' : 'bg-gray-200'">
+      </div>
+      }
+    </div>
+    }
+  </div>
+</div>
+
+<!-- Step Content -->
+<div class="card p-8">
+  <!-- Step 1: Select Child -->
+  @if (currentStep() === 1) {
+  <div class="animate-fade-in space-y-5">
+    <h3 class="font-bold text-dark-gray text-lg">Select Child</h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      @for (child of myChildren(); track child.childId) {
+      <div (click)="selectedChild.set(child)" class="p-4 rounded-xl border-2 cursor-pointer transition-all duration-200"
+        [class]="selectedChild()?.childId === child.childId ? 'border-primary-maroon bg-primary-maroon/5' : 'border-gray-200 hover:border-primary-maroon/50'">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center"
+            [class]="child.gender === 'FEMALE' ? 'bg-pink-100' : 'bg-blue-100'">
+            <svg class="w-5 h-5" [class]="child.gender === 'FEMALE' ? 'text-pink-500' : 'text-blue-500'" fill="none"
+              stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+            </svg>
+          </div>
+          <div>
+            <p class="font-semibold text-dark-gray">{{ child.childName }}</p>
+            <p class="text-xs text-medium-gray">{{ child.schoolName }}</p>
+          </div>
+          @if (selectedChild()?.childId === child.childId) {
+          <div class="ml-auto w-5 h-5 bg-primary-maroon rounded-full flex items-center justify-center">
+            <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+          }
+        </div>
+      </div>
+      }
+      @empty {
+      <div class="col-span-2 text-center py-8">
+        <p class="text-medium-gray mb-3">No children registered yet.</p>
+        <a routerLink="/children/add" class="btn-primary btn-sm">Add Child First</a>
+      </div>
+      }
+    </div>
+  </div>
+  }
+
+  <!-- Step 2: Select Policy -->
+  @if (currentStep() === 2) {
+  <div class="animate-fade-in space-y-4">
+    <h3 class="font-bold text-dark-gray text-lg">Select Policy</h3>
+    <div class="space-y-3">
+      @for (policy of activePolicies(); track policy.policyId) {
+      <div
+        [class]="policy.isActive
+          ? (selectedPolicy()?.policyId === policy.policyId ? 'border-primary-maroon bg-primary-maroon/5 cursor-pointer' : 'border-gray-200 hover:border-primary-maroon/50 cursor-pointer')
+          : 'border-gray-200 bg-gray-50 opacity-60 cursor-not-allowed'"
+        (click)="policy.isActive ? selectedPolicy.set(policy) : null"
+        class="p-4 rounded-xl border-2 transition-all duration-200">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-primary-maroon/10 rounded-xl flex items-center justify-center">
+              <svg class="w-5 h-5 text-primary-maroon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.955 11.955 0 003 10c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.249-8.25-3.285z" />
+              </svg>
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <p class="font-semibold text-dark-gray">{{ policy.policyName }}</p>
+                @if (!policy.isActive) {
+                <span class="text-[10px] bg-red-100 text-red-600 px-2 py-0.5 rounded-full font-medium">Discontinued</span>
+                }
+              </div>
+              <p class="text-xs text-medium-gray">{{ policy.durationYears }} years · Base ₹{{ policy.basePremium }}/month</p>
+            </div>
+          </div>
+          <div class="text-right">
+            @if (policy.isActive) {
+            <p class="text-sm font-bold text-primary-maroon">₹{{ (policy.maturityBenefitAmount/100000).toFixed(1) }}L</p>
+            <p class="text-xs text-medium-gray">Maturity</p>
+            }
+          </div>
+        </div>
+      </div>
+      }
+      @empty {
+      <div class="text-center py-8">
+        <p class="text-medium-gray mb-3">No policies found.</p>
+        <a routerLink="/policies/catalog" class="btn-primary btn-sm">View Catalog</a>
+      </div>
+      }
+    </div>
+    <div>
+      <label for="frequency" class="form-label mt-3">Payment Frequency</label>
+      <select id="frequency" name="frequency" [formControl]="frequencyControl" class="form-select">
+        <option value="MONTHLY">Monthly</option>
+        <option value="QUARTERLY">Quarterly</option>
+        <option value="HALF_YEARLY">Half Yearly</option>
+        <option value="YEARLY">Yearly</option>
+      </select>
+    </div>
+  </div>
+  }
+
+  <!-- Step 3: Risk Details Input -->
+  @if (currentStep() === 3) {
+  <div class="animate-fade-in space-y-6">
+    <div>
+      <h3 class="font-bold text-dark-gray text-lg">Risk Assessment Details</h3>
+      <p class="text-sm text-medium-gray mt-1">Please provide accurate details. These will be used by our underwriter to calculate your final premium.</p>
+    </div>
+
+    <!-- Info box -->
+    <div class="bg-blue-50 border border-blue-200 rounded-xl p-4">
+      <p class="text-xs font-bold text-blue-900 mb-2 uppercase tracking-wider">Underwriting Process</p>
+      <p class="text-sm text-blue-800">Your details are securely submitted to our underwriting team. They will assess your profile and provide a finalized premium amount upon approval.</p>
+    </div>
+
+    <!-- Risk Input Form -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div>
+        <label class="form-label">Parent Age *</label>
+        <input type="number" class="form-input mt-1" placeholder="e.g. 35" min="18" max="65"
+          [ngModel]="parentAge()" (ngModelChange)="parentAge.set($event)" name="parentAge">
+      </div>
+      <div>
+        <label class="form-label">Occupation *</label>
+        <select class="form-select mt-1" [ngModel]="occupation()" (ngModelChange)="occupation.set($event)" name="occupation">
+          <option value="">Select Occupation</option>
+          @for (occ of occupations; track occ) {
+            <option [value]="occ.toLowerCase()">{{ occ }}</option>
+          }
+        </select>
+      </div>
+      <div>
+        <label class="form-label">Annual Income (₹) *</label>
+        <input type="number" class="form-input mt-1" placeholder="e.g. 800000" min="0"
+          [ngModel]="annualIncome()" (ngModelChange)="annualIncome.set($event)" name="annualIncome">
+        <p class="text-[10px] text-medium-gray mt-1">Enter in rupees (e.g. 800000 for ₹8 Lakh)</p>
+      </div>
+      <div>
+        <label class="form-label">Desired Coverage Amount (₹) *</label>
+        <input type="number" class="form-input mt-1" placeholder="e.g. 1000000" min="0"
+          [ngModel]="coverageAmount()" (ngModelChange)="coverageAmount.set($event)" name="coverageAmount">
+        <p class="text-[10px] text-medium-gray mt-1">Max 5× annual income. e.g. ₹10 Lakh = 1000000</p>
+      </div>
+    </div>
+
+    @if (riskFormValid()) {
+    <div class="bg-green-50 border border-green-200 rounded-xl p-3 text-sm text-green-800">
+      ✅ Details provided! You can proceed to the next step.
+    </div>
+    }
+  </div>
+  }
+
+  <!-- Step 4: Nominee Details -->
+  @if (currentStep() === 4) {
+  <div class="animate-fade-in space-y-5">
+    <h3 class="font-bold text-dark-gray text-lg">Nominee Details</h3>
+    <form [formGroup]="nomineeForm" class="space-y-4">
+      <div>
+        <label for="nomineeName" class="form-label">Nominee Name *</label>
+        <input type="text" id="nomineeName" formControlName="nomineeName" class="form-input"
+          placeholder="Full name of nominee" [class.error]="nf['nomineeName'].invalid && nf['nomineeName'].touched">
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label for="relationship" class="form-label">Relationship *</label>
+          <select id="relationship" formControlName="relationship" class="form-select">
+            <option value="">Select</option>
+            <option value="Father">Father</option>
+            <option value="Mother">Mother</option>
+            <option value="Spouse">Spouse</option>
+            <option value="Sibling">Sibling</option>
+            <option value="Guardian">Guardian</option>
+          </select>
+        </div>
+        <div>
+          <label for="nomineePhone" class="form-label">Phone Number *</label>
+          <input type="tel" id="nomineePhone" formControlName="phone" class="form-input"
+            placeholder="10-digit number" [class.error]="nf['phone'].invalid && nf['phone'].touched">
+        </div>
+      </div>
+    </form>
+  </div>
+  }
+
+  <!-- Step 5: Upload Documents -->
+  @if (currentStep() === 5) {
+  <div class="animate-fade-in space-y-5">
+    <h3 class="font-bold text-dark-gray text-lg">Upload Required Documents</h3>
+    @if (requiredDocs().length > 0) {
+    <div class="space-y-4">
+      @for (doc of requiredDocs(); track doc.documentType) {
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 border border-gray-200 rounded-xl gap-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 bg-primary-maroon/10 rounded-xl flex items-center justify-center">
+            <svg class="w-5 h-5 text-primary-maroon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m6.75 12l-3-3m0 0l-3 3m3-3v6m-1.5-15H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+            </svg>
+          </div>
+          <div>
+            <p class="font-semibold text-dark-gray">{{ doc.documentType }}</p>
+            <p class="text-xs text-medium-gray">{{ uploadedFiles().has(doc.documentType) ? uploadedFiles().get(doc.documentType)?.name : 'Not uploaded yet (PDF, JPG, PNG)' }}</p>
+          </div>
+        </div>
+        <div>
+          <label class="btn-secondary btn-sm cursor-pointer whitespace-nowrap">
+            {{ uploadedFiles().has(doc.documentType) ? 'Change File' : 'Upload File' }}
+            <input type="file" class="hidden" (change)="onFileSelected($event, doc.documentType)" accept=".pdf,.jpg,.jpeg,.png">
+          </label>
+        </div>
+      </div>
+      }
+    </div>
+    } @else {
+    <div class="p-8 text-center bg-gray-50 rounded-xl border border-gray-200">
+      <svg class="w-10 h-10 text-green-500 mx-auto mb-3" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      <p class="font-semibold text-dark-gray">No additional documents required</p>
+      <p class="text-sm text-medium-gray mt-1">You can proceed to the next step.</p>
+    </div>
+    }
+  </div>
+  }
+
+  <!-- Step 6: Review & Submit -->
+  @if (currentStep() === 6) {
+  <div class="animate-fade-in space-y-5">
+    <h3 class="font-bold text-dark-gray text-lg">Review Application</h3>
+    <div class="space-y-4">
+      @for (section of reviewSections(); track section.title) {
+      <div class="border border-gray-200 rounded-xl overflow-hidden">
+        <div class="bg-gray-50 px-4 py-2.5 font-semibold text-dark-gray text-sm border-b border-gray-200">{{ section.title }}</div>
+        <div class="px-4 py-3 space-y-2">
+          @for (item of section.items; track item.label) {
+          <div class="flex justify-between text-sm">
+            <span class="text-medium-gray">{{ item.label }}</span>
+            <span class="font-semibold text-dark-gray">{{ item.value }}</span>
+          </div>
+          }
+        </div>
+      </div>
+      }
+    </div>
+    <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-sm text-amber-800">
+      By submitting, you confirm all details are accurate. The application will be reviewed by our underwriting team and you'll be notified within 3–5 business days.
+    </div>
+  </div>
+  }
+</div>
+
+<!-- Navigation -->
+<div class="flex justify-between items-center">
+  <button (click)="prevStep()" [disabled]="currentStep() === 1"
+    class="btn-secondary disabled:opacity-40 disabled:cursor-not-allowed">
+    ← Previous
+  </button>
+  @if (currentStep() < 6) {
+  <button (click)="nextStep()" class="btn-primary" [disabled]="!canProceed()">
+    Next →
+  </button>
+  } @else {
+  <button (click)="submit()" class="btn-primary btn-lg" [disabled]="loading()">
+    @if (loading()) {
+    <span class="flex items-center gap-2">
+      <svg class="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
+        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+      </svg>
+      Submitting...
+    </span>
+    } @else { Submit Application }
+  </button>
+  }
+</div>
+</div>

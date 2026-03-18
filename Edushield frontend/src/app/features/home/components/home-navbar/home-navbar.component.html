@@ -1,0 +1,104 @@
+<!-- Navbar -->
+<nav
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+  [class.bg-white]="isScrolled()"
+  [class.shadow-md]="isScrolled()"
+  [class.bg-transparent]="!isScrolled()"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 md:h-20">
+
+      <!-- Logo -->
+      <button (click)="scrollTo('hero')" class="flex items-center gap-2 group">
+        <img
+          src="/image.png"
+          alt="EduShield Logo"
+          class="h-10 w-auto object-contain transition-opacity duration-300 group-hover:opacity-90"
+        />
+        <span
+          class="text-lg font-extrabold tracking-tight transition-colors duration-300"
+          [class.text-primary-maroon]="isScrolled()"
+          [class.text-white]="!isScrolled()"
+        >Edu<span [class.text-accent-gold]="true">Shield</span></span>
+      </button>
+
+      <!-- Desktop Nav Links -->
+      <div class="hidden md:flex items-center gap-1">
+        @for (link of navLinks; track link.label) {
+          <button
+            (click)="scrollTo(link.fragment)"
+            class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 hover:bg-primary-maroon/10 hover:text-primary-maroon"
+            [class.text-white]="!isScrolled()"
+            [class.text-dark-gray]="isScrolled()"
+          >
+            {{ link.label }}
+          </button>
+        }
+      </div>
+
+      <!-- Desktop Auth Buttons -->
+      <div class="hidden md:flex items-center gap-3">
+        <button
+          (click)="goLogin()"
+          class="px-5 py-2 rounded-full text-sm font-semibold border-2 transition-all duration-200 hover:bg-primary-maroon hover:text-white"
+          [class.border-white]="!isScrolled()"
+          [class.text-white]="!isScrolled()"
+          [class.border-primary-maroon]="isScrolled()"
+          [class.text-primary-maroon]="isScrolled()"
+        >
+          Login
+        </button>
+        <button
+          (click)="goRegister()"
+          class="px-5 py-2 rounded-full text-sm font-semibold bg-primary-maroon text-white border-2 border-primary-maroon hover:bg-deep-maroon hover:border-deep-maroon transition-all duration-200 shadow-maroon"
+        >
+          Register
+        </button>
+      </div>
+
+      <!-- Mobile Hamburger -->
+      <button
+        (click)="toggleMenu()"
+        class="md:hidden p-2 rounded-lg transition-colors"
+        [class.text-white]="!isScrolled()"
+        [class.text-primary-maroon]="isScrolled()"
+      >
+        @if (!menuOpen()) {
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        } @else {
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        }
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  @if (menuOpen()) {
+    <div class="md:hidden bg-white shadow-lg border-t border-gray-100">
+      <div class="px-4 py-3 space-y-1">
+        @for (link of navLinks; track link.label) {
+          <button
+            (click)="scrollTo(link.fragment)"
+            class="w-full text-left px-4 py-3 rounded-lg text-sm font-medium text-dark-gray hover:bg-primary-maroon/10 hover:text-primary-maroon transition-colors"
+          >
+            {{ link.label }}
+          </button>
+        }
+        <div class="flex gap-3 pt-3 border-t border-gray-100">
+          <button
+            (click)="goLogin()"
+            class="flex-1 py-2.5 rounded-full text-sm font-semibold border-2 border-primary-maroon text-primary-maroon hover:bg-primary-maroon hover:text-white transition-all"
+          >Login</button>
+          <button
+            (click)="goRegister()"
+            class="flex-1 py-2.5 rounded-full text-sm font-semibold bg-primary-maroon text-white hover:bg-deep-maroon transition-all"
+          >Register</button>
+        </div>
+      </div>
+    </div>
+  }
+</nav>

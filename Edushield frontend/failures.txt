@@ -1,0 +1,281 @@
+﻿
+[1A[2K[31mChrome Headless 145.0.0.0 (Windows 10) LoginComponent 
+should create FAILED[39m
+Chrome Headless 145.0.0.0 (Windows 10): Executed 101 of 214[31m (1 
+FAILED)[39m (0 secs / 0.301 secs)
+[1A[2K[31mChrome Headless 145.0.0.0 (Windows 10) LoginComponent 
+should call authService.login when form is valid and submitted 
+FAILED[39m
+Chrome Headless 145.0.0.0 (Windows 10): Executed 102 of 214[31m (2 
+FAILED)[39m (0 secs / 0.305 secs)
+[1A[2K[31mChrome Headless 145.0.0.0 (Windows 10) LoginComponent 
+should initialize form with empty fields and validators FAILED[39m
+Chrome Headless 145.0.0.0 (Windows 10): Executed 103 of 214[31m (3 
+FAILED)[39m (0 secs / 0.308 secs)
+[1A[2K[31mChrome Headless 145.0.0.0 (Windows 10) LoginComponent 
+should handle login error correctly FAILED[39m
+Chrome Headless 145.0.0.0 (Windows 10): Executed 104 of 214[31m (4 
+FAILED)[39m (0 secs / 0.312 secs)
+[1A[2K[31mChrome Headless 145.0.0.0 (Windows 10) LoginComponent 
+should show validation errors if form is submitted empty FAILED[39m
+Chrome Headless 145.0.0.0 (Windows 10): Executed 105 of 214[31m (5 
+FAILED)[39m (0 secs / 0.315 secs)
+[1A[2K[31mChrome Headless 145.0.0.0 (Windows 10) LoginComponent 
+should automatically login with google when authState emits valid 
+user FAILED[39m
+Chrome Headless 145.0.0.0 (Windows 10): Executed 106 of 214[31m (6 
+FAILED)[39m (0 secs / 0.318 secs)
+[1A[2K[31mChrome Headless 145.0.0.0 (Windows 10) LoginComponent 
+should navigate to admin dashboard for ADMIN role FAILED[39m
+Chrome Headless 145.0.0.0 (Windows 10): Executed 107 of 214[31m (7 
+FAILED)[39m (0 secs / 0.322 secs)
+[1A[2K[31mChrome Headless 145.0.0.0 (Windows 10) LoginComponent 
+should navigate to underwriter dashboard for UNDERWRITER role 
+FAILED[39m
+Chrome Headless 145.0.0.0 (Windows 10): Executed 108 of 214[31m (8 
+FAILED)[39m (0 secs / 0.326 secs)
+[1A[2K[31mChrome Headless 145.0.0.0 (Windows 10) LoginComponent 
+should navigate to claims dashboard for CLAIMS_OFFICER role 
+FAILED[39m
+Chrome Headless 145.0.0.0 (Windows 10): Executed 109 of 214[31m (9 
+FAILED)[39m (0 secs / 0.329 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 110 of 
+214[31m (9 FAILED)[39m (0 secs / 0.33 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 111 of 
+214[31m (9 FAILED)[39m (0 secs / 0.331 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 112 of 
+214[31m (9 FAILED)[39m (0 secs / 0.332 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 113 of 
+214[31m (9 FAILED)[39m (0 secs / 0.333 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 114 of 
+214[31m (9 FAILED)[39m (0 secs / 0.334 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 115 of 
+214[31m (9 FAILED)[39m (0 secs / 0.334 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 116 of 
+214[31m (9 FAILED)[39m (0 secs / 0.335 secs)
+Chrome Headless 145.0.0.0 (Windows 10): Executed 116 of 214[31m (9 
+FAILED)[39m (0 secs / 0.335 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 117 of 
+214[31m (9 FAILED)[39m (0 secs / 0.336 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 118 of 
+214[31m (9 FAILED)[39m (0 secs / 0.337 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 119 of 
+214[31m (9 FAILED)[39m (0 secs / 0.338 secs)
+Chrome Headless 145.0.0.0 (Windows 10): Executed 119 of 214[31m (9 
+FAILED)[39m (0 secs / 0.338 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 120 of 
+214[31m (9 FAILED)[39m (0 secs / 0.338 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 121 of 
+214[31m (9 FAILED)[39m (0 secs / 0.339 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 122 of 
+214[31m (9 FAILED)[39m (0 secs / 0.34 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 123 of 
+214[31m (9 FAILED)[39m (0 secs / 0.341 secs)
+Chrome Headless 145.0.0.0 (Windows 10): Executed 123 of 214[31m (9 
+FAILED)[39m (0 secs / 0.341 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 124 of 
+214[31m (9 FAILED)[39m (0 secs / 0.342 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 125 of 
+214[31m (9 FAILED)[39m (0 secs / 0.343 secs)
+Chrome Headless 145.0.0.0 (Windows 10): Executed 125 of 214[31m (9 
+FAILED)[39m (0 secs / 0.343 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 126 of 
+214[31m (9 FAILED)[39m (0 secs / 0.344 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 127 of 
+214[31m (9 FAILED)[39m (0 secs / 0.345 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 128 of 
+214[31m (9 FAILED)[39m (0 secs / 0.346 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 129 of 
+214[31m (9 FAILED)[39m (0 secs / 0.347 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 130 of 
+214[31m (9 FAILED)[39m (0 secs / 0.348 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 131 of 
+214[31m (9 FAILED)[39m (0 secs / 0.348 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 132 of 
+214[31m (9 FAILED)[39m (0 secs / 0.348 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 133 of 
+214[31m (9 FAILED)[39m (0 secs / 0.349 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 134 of 
+214[31m (9 FAILED)[39m (0 secs / 0.35 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 135 of 
+214[31m (9 FAILED)[39m (0 secs / 0.35 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 136 of 
+214[31m (9 FAILED)[39m (0 secs / 0.351 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 137 of 
+214[31m (9 FAILED)[39m (0 secs / 0.351 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 138 of 
+214[31m (9 FAILED)[39m (0 secs / 0.352 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 139 of 
+214[31m (9 FAILED)[39m (0 secs / 0.353 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 140 of 
+214[31m (9 FAILED)[39m (0 secs / 0.353 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 141 of 
+214[31m (9 FAILED)[39m (0 secs / 0.354 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 142 of 
+214[31m (9 FAILED)[39m (0 secs / 0.373 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 143 of 
+214[31m (9 FAILED)[39m (0 secs / 0.375 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 144 of 
+214[31m (9 FAILED)[39m (0 secs / 0.382 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 145 of 
+214[31m (9 FAILED)[39m (0 secs / 0.384 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 146 of 
+214[31m (9 FAILED)[39m (0 secs / 0.386 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 147 of 
+214[31m (9 FAILED)[39m (0 secs / 0.388 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 148 of 
+214[31m (9 FAILED)[39m (0 secs / 0.39 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 149 of 
+214[31m (9 FAILED)[39m (0 secs / 0.392 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 150 of 
+214[31m (9 FAILED)[39m (0 secs / 0.394 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 151 of 
+214[31m (9 FAILED)[39m (0 secs / 0.395 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 152 of 
+214[31m (9 FAILED)[39m (0 secs / 0.396 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 153 of 
+214[31m (9 FAILED)[39m (0 secs / 0.396 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 154 of 
+214[31m (9 FAILED)[39m (0 secs / 0.396 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 155 of 
+214[31m (9 FAILED)[39m (0 secs / 0.397 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 156 of 
+214[31m (9 FAILED)[39m (0 secs / 0.398 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 157 of 
+214[31m (9 FAILED)[39m (0 secs / 0.398 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 158 of 
+214[31m (9 FAILED)[39m (0 secs / 0.399 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 159 of 
+214[31m (9 FAILED)[39m (0 secs / 0.399 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 160 of 
+214[31m (9 FAILED)[39m (0 secs / 0.399 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 161 of 
+214[31m (9 FAILED)[39m (0 secs / 0.4 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 162 of 
+214[31m (9 FAILED)[39m (0 secs / 0.401 secs)
+Chrome Headless 145.0.0.0 (Windows 10): Executed 162 of 214[31m (9 
+FAILED)[39m (0 secs / 0.401 secs)
+Chrome Headless 145.0.0.0 (Windows 10): Executed 162 of 214[31m (9 
+FAILED)[39m (0 secs / 0.401 secs)
+Chrome Headless 145.0.0.0 (Windows 10): Executed 162 of 214[31m (9 
+FAILED)[39m (0 secs / 0.401 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 163 of 
+214[31m (9 FAILED)[39m (0 secs / 0.402 secs)
+Chrome Headless 145.0.0.0 (Windows 10): Executed 163 of 214[31m (9 
+FAILED)[39m (0 secs / 0.402 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 164 of 
+214[31m (9 FAILED)[39m (0 secs / 0.403 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 165 of 
+214[31m (9 FAILED)[39m (0 secs / 0.404 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 166 of 
+214[31m (9 FAILED)[39m (0 secs / 0.405 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 167 of 
+214[31m (9 FAILED)[39m (0 secs / 0.422 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 168 of 
+214[31m (9 FAILED)[39m (0 secs / 0.426 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 169 of 
+214[31m (9 FAILED)[39m (0 secs / 0.428 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 170 of 
+214[31m (9 FAILED)[39m (0 secs / 0.431 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 171 of 
+214[31m (9 FAILED)[39m (0 secs / 0.434 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 172 of 
+214[31m (9 FAILED)[39m (0 secs / 0.437 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 173 of 
+214[31m (9 FAILED)[39m (0 secs / 0.439 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 174 of 
+214[31m (9 FAILED)[39m (0 secs / 0.442 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 175 of 
+214[31m (9 FAILED)[39m (0 secs / 0.443 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 176 of 
+214[31m (9 FAILED)[39m (0 secs / 0.444 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 177 of 
+214[31m (9 FAILED)[39m (0 secs / 0.445 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 178 of 
+214[31m (9 FAILED)[39m (0 secs / 0.446 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 179 of 
+214[31m (9 FAILED)[39m (0 secs / 0.447 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 180 of 
+214[31m (9 FAILED)[39m (0 secs / 0.447 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 181 of 
+214[31m (9 FAILED)[39m (0 secs / 0.447 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 182 of 
+214[31m (9 FAILED)[39m (0 secs / 0.448 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 183 of 
+214[31m (9 FAILED)[39m (0 secs / 0.449 secs)
+Chrome Headless 145.0.0.0 (Windows 10): Executed 183 of 214[31m (9 
+FAILED)[39m (0 secs / 0.449 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 184 of 
+214[31m (9 FAILED)[39m (0 secs / 0.45 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 185 of 
+214[31m (9 FAILED)[39m (0 secs / 0.451 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 186 of 
+214[31m (9 FAILED)[39m (0 secs / 0.452 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 187 of 
+214[31m (9 FAILED)[39m (0 secs / 0.453 secs)
+Chrome Headless 145.0.0.0 (Windows 10): Executed 187 of 214[31m (9 
+FAILED)[39m (0 secs / 0.453 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 188 of 
+214[31m (9 FAILED)[39m (0 secs / 0.453 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 189 of 
+214[31m (9 FAILED)[39m (0 secs / 0.453 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 190 of 
+214[31m (9 FAILED)[39m (0 secs / 0.454 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 191 of 
+214[31m (9 FAILED)[39m (0 secs / 0.455 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 192 of 
+214[31m (9 FAILED)[39m (0 secs / 0.456 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 193 of 
+214[31m (9 FAILED)[39m (0 secs / 0.456 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 194 of 
+214[31m (9 FAILED)[39m (0 secs / 0.456 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 195 of 
+214[31m (9 FAILED)[39m (0 secs / 0.456 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 196 of 
+214[31m (9 FAILED)[39m (0 secs / 0.457 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 197 of 
+214[31m (9 FAILED)[39m (0 secs / 0.458 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 198 of 
+214[31m (9 FAILED)[39m (0 secs / 0.459 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 199 of 
+214[31m (9 FAILED)[39m (0 secs / 0.46 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 200 of 
+214[31m (9 FAILED)[39m (0 secs / 0.46 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 201 of 
+214[31m (9 FAILED)[39m (0 secs / 0.46 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 202 of 
+214[31m (9 FAILED)[39m (0 secs / 0.461 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 203 of 
+214[31m (9 FAILED)[39m (0 secs / 0.462 secs)
+[1A[2K[31mChrome Headless 145.0.0.0 (Windows 10) 
+SubscriptionService getById should throw error when success is false 
+FAILED[39m
+	Expected 'Failed to fetch subscription' to be 'Subscription not 
+found'.
+Chrome Headless 145.0.0.0 (Windows 10): Executed 204 of 214[31m (10 
+FAILED)[39m (0 secs / 0.463 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 205 of 
+214[31m (10 FAILED)[39m (0 secs / 0.464 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 206 of 
+214[31m (10 FAILED)[39m (0 secs / 0.464 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 207 of 
+214[31m (10 FAILED)[39m (0 secs / 0.465 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 208 of 
+214[31m (10 FAILED)[39m (0 secs / 0.466 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 209 of 
+214[31m (10 FAILED)[39m (0 secs / 0.467 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 210 of 
+214[31m (10 FAILED)[39m (0 secs / 0.467 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 211 of 
+214[31m (10 FAILED)[39m (0 secs / 0.467 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 212 of 
+214[31m (10 FAILED)[39m (0 secs / 0.468 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 213 of 
+214[31m (10 FAILED)[39m (0 secs / 0.469 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 214 of 
+214[31m (10 FAILED)[39m (0 secs / 0.469 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 214 of 
+214[31m (10 FAILED)[39m (0.563 secs / 0.469 secs)
+[31mTOTAL: 10 FAILED, 204 SUCCESS[39m
+
+

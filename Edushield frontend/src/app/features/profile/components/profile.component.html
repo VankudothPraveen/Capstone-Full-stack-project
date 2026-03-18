@@ -1,0 +1,73 @@
+<div class="max-w-3xl mx-auto space-y-6 animate-fade-in">
+  <div>
+    <h1 class="page-header">My Profile</h1>
+    <p class="page-subheader">View and update your personal information</p>
+  </div>
+
+  <!-- Avatar Card -->
+  <div class="card p-6 flex items-center gap-6">
+    <div
+      class="w-20 h-20 bg-maroon-gradient rounded-full flex items-center justify-center text-white font-bold text-3xl flex-shrink-0 shadow-maroon">
+      {{ auth.currentUser()?.name?.charAt(0) }}
+    </div>
+    <div>
+      <h2 class="text-xl font-bold text-dark-gray">{{ auth.currentUser()?.name }}</h2>
+      <p class="text-medium-gray text-sm">{{ auth.currentUser()?.email }}</p>
+      <span class="badge mt-2" [class]="auth.currentUser()?.roleName === 'ROLE_ADMIN' ? 'badge-maroon' : 'badge-info'">
+        {{ auth.currentUser()?.roleName === 'ROLE_ADMIN' ? 'Administrator' : 'User' }}
+      </span>
+    </div>
+  </div>
+
+  <!-- Edit Form -->
+  <div class="card p-8">
+    <h3 class="font-bold text-dark-gray mb-5">Personal Information</h3>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-5">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div>
+          <label for="name" class="form-label">Full Name</label>
+          <input type="text" id="name" name="name" formControlName="name" class="form-input">
+        </div>
+        <div>
+          <label for="phone" class="form-label">Phone Number</label>
+          <input type="tel" id="phone" name="phone" formControlName="phone" class="form-input">
+        </div>
+      </div>
+      <div>
+        <label for="email" class="form-label">Email Address</label>
+        <input type="email" id="email" name="email" formControlName="email"
+          class="form-input bg-gray-50 cursor-not-allowed" readonly>
+        <p class="text-xs text-medium-gray mt-1">Email cannot be changed</p>
+      </div>
+      <div class="pt-1">
+        <button type="submit" class="btn-primary" [disabled]="loading() || form.invalid">
+          @if (loading()) {
+          <span class="flex items-center gap-2"><svg class="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+            </svg>Saving...</span>
+          } @else { Save Changes }
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Account Info -->
+  <div class="card p-6">
+    <h3 class="font-bold text-dark-gray mb-4">Account Information</h3>
+    <div class="space-y-3">
+      <div class="flex justify-between py-2 border-b border-gray-100">
+        <span class="text-sm text-medium-gray">Member Since</span>
+        <span class="text-sm font-semibold">{{ auth.currentUser()?.createdAt | date:'MMMM d, yyyy' }}</span>
+      </div>
+      <div class="flex justify-between py-2 border-b border-gray-100">
+        <span class="text-sm text-medium-gray">User ID</span>
+        <span class="text-sm font-mono font-semibold">USR-{{ auth.currentUser()?.userId }}</span>
+      </div>
+      <div class="flex justify-between py-2">
+        <span class="text-sm text-medium-gray">Role</span>
+        <span class="text-sm font-semibold">{{ auth.currentUser()?.roleName }}</span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,53 @@
+<div class="space-y-6 animate-fade-in">
+  <div class="flex items-center justify-between">
+    <div>
+      <h1 class="page-header">Upcoming Payments</h1>
+      <p class="page-subheader">Don't miss your premium due dates</p>
+    </div>
+    <a routerLink="/payments/make-payment" class="btn-primary">Pay Now</a>
+  </div>
+
+  <div class="space-y-4">
+    @for (p of upcomingPayments(); track p.subscriptionId) {
+    <div class="card p-5 flex items-center gap-4 hover:shadow-md transition-shadow" [class.border-red-200]="p.isOverdue"
+      [class.bg-red-50]="p.isOverdue">
+      <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
+        [class]="p.isOverdue ? 'bg-red-100' : 'bg-amber-100'">
+        <svg class="w-5 h-5" [class]="p.isOverdue ? 'text-red-500' : 'text-amber-600'" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+      </div>
+      <div class="flex-1 min-w-0">
+        <p class="font-semibold text-dark-gray truncate">{{ p.policyName }}</p>
+        <p class="text-xs text-medium-gray">{{ p.subscriptionNumber }}</p>
+        <p class="text-xs text-medium-gray mt-0.5">Child: {{ p.childName }}</p>
+      </div>
+      <div class="text-right flex-shrink-0">
+        <p class="font-bold text-dark-gray text-lg">₹{{ (p.premiumAmount || 0).toLocaleString() }}</p>
+        <p class="text-xs" [class]="p.isOverdue ? 'text-red-500 font-semibold' : 'text-medium-gray'">
+          Due: {{ p.nextDueDate | date:'dd MMM yyyy' }}
+        </p>
+      </div>
+      <div class="flex-shrink-0">
+        <span class="badge" [class]="p.isOverdue ? 'badge-danger' : 'badge-warning'">{{ p.status }}</span>
+      </div>
+      <a routerLink="/payments/make-payment" class="btn-primary btn-sm flex-shrink-0">Pay</a>
+    </div>
+    }
+    @empty {
+    @if (subscriptions().length === 0) {
+    <!-- No subscriptions at all -->
+    <div class="card p-16 text-center">
+      <h3 class="font-bold text-dark-gray mb-2">No active subscriptions</h3>
+      <p class="text-medium-gray text-sm mb-4">Subscriptions appear here after your policy application is
+        <strong>approved</strong> by an admin.</p>
+      <a routerLink="/applications/my-applications" class="btn-primary inline-block">Check Applications</a>
+    </div>
+    } @else {
+    <!-- Has subscriptions but all caught up -->
+    <div class="card p-16 text-center">
+      <h3 class="font-bold text-dark-gray mb-2">All caught up!</h3>
+      <p class="text-medium-gray text-sm">No upcoming or overdue payments at this time.</p>
+    </div>
+    }
+    }
+  </div>
+</div>

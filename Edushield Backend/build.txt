@@ -1,0 +1,23 @@
+﻿3[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< org.ChildInsurance:education >--------------------
+[INFO] Building education 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.5.0:clean (default-clean) @ education ---
+[INFO] Deleting P:\CapStone Project\education\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ education ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ education ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 93 source files with javac [debug parameters release 17] to target\classes
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  7.602 s
+[INFO] Finished at: 2026-02-25T23:20:14+05:30
+[INFO] ------------------------------------------------------------------------

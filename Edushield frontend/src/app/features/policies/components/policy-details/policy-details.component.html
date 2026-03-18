@@ -1,0 +1,93 @@
+<div class="space-y-6 animate-fade-in">
+  @if (policy()) {
+  <!-- Hero -->
+  <div class="bg-maroon-gradient rounded-2xl p-8 text-white relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-64 h-64 rounded-full bg-white/5 -translate-y-24 translate-x-24"></div>
+    <div class="relative z-10">
+      <a routerLink="/policies/catalog" class="text-white/70 hover:text-white text-sm flex items-center gap-1 mb-6">
+        ← Back to Catalog
+      </a>
+      <div class="flex items-start gap-6">
+        <div class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center flex-shrink-0">
+          <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.955 11.955 0 003 10c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.249-8.25-3.285z"/></svg>
+        </div>
+        <div>
+          <h1 class="text-3xl font-bold mb-1">{{ policy()!.policyName }}</h1>
+          <p class="text-white/70 text-sm">{{ policy()!.durationYears }} Year Policy · {{ policy()!.isActive ? 'Active'
+            : 'Discontinued' }}</p>
+          <p class="text-white/80 text-sm mt-3 max-w-2xl">{{ policy()!.description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Key Metrics -->
+  <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+    @for (m of keyMetrics(); track m.label) {
+    <div class="card p-5 text-center">
+      <p class="text-2xl font-bold text-primary-maroon mb-1">{{ m.value }}</p>
+      <p class="text-xs text-medium-gray font-medium">{{ m.label }}</p>
+    </div>
+    }
+  </div>
+
+  <!-- Details Grid -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <!-- Coverage Details -->
+    <div class="card p-6">
+      <h3 class="font-bold text-dark-gray mb-4">Financial Benefits</h3>
+      <div class="space-y-3">
+        @for (item of financialItems(); track item.label) {
+        <div class="flex justify-between py-2.5 border-b border-gray-100 last:border-0">
+          <span class="text-sm text-medium-gray">{{ item.label }}</span>
+          <span class="text-sm font-semibold text-dark-gray">{{ item.value }}</span>
+        </div>
+        }
+      </div>
+    </div>
+
+    <!-- Policy Features -->
+    <div class="card p-6">
+      <h3 class="font-bold text-dark-gray mb-4">Policy Features</h3>
+      <div class="space-y-3">
+        @for (feat of features(); track feat.label) {
+        <div class="flex items-center gap-3 py-2 border-b border-gray-100 last:border-0">
+          <span class="w-2 h-2 rounded-full bg-primary-maroon flex-shrink-0"></span>
+          <div>
+            <p class="text-sm font-semibold text-dark-gray">{{ feat.label }}</p>
+            <p class="text-xs text-medium-gray">{{ feat.value }}</p>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="card p-8 text-center bg-gradient-to-r from-primary-maroon/5 to-accent-gold/5">
+    <h3 class="font-bold text-dark-gray text-xl mb-2">Ready to secure your child's future?</h3>
+    @if (policy()!.isActive) {
+    <p class="text-medium-gray text-sm mb-6">Apply for {{ policy()!.policyName }} today and get started in minutes</p>
+    <div class="flex gap-3 justify-center">
+      <a routerLink="/policies/calculator" class="btn-secondary">Calculate Benefit</a>
+      <a routerLink="/applications/apply" [queryParams]="{policyId: policy()!.policyId}"
+        class="btn-primary btn-lg">Apply Now</a>
+    </div>
+    } @else {
+    <p class="text-medium-gray text-sm mb-4">This policy has been <span class="font-semibold text-red-500">discontinued</span> and is no longer available for new applications.</p>
+    <div class="inline-flex items-center gap-2 bg-red-50 border border-red-200 text-red-600 text-sm font-medium px-5 py-2.5 rounded-xl">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg>
+      Applications Closed
+    </div>
+    <div class="mt-4">
+      <a routerLink="/policies/catalog" class="btn-secondary text-sm">Browse Active Policies</a>
+    </div>
+    }
+  </div>
+  } @else {
+  <div class="card p-16 text-center">
+    <p class="text-medium-gray">Policy not found</p>
+    <a routerLink="/policies/catalog" class="btn-primary mt-4 inline-block">Browse Policies</a>
+  </div>
+  }
+</div>

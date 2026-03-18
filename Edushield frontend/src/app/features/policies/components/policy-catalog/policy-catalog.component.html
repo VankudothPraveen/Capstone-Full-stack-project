@@ -1,0 +1,96 @@
+<div class="space-y-6 animate-fade-in">
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+    <div>
+      <h1 class="page-header">Policy Catalog</h1>
+      <p class="page-subheader">Explore our child education insurance plans</p>
+    </div>
+    <div class="flex gap-3">
+      <a routerLink="/policies/compare" class="btn-secondary flex items-center gap-2">Compare</a>
+      <a routerLink="/policies/calculator" class="btn-primary flex items-center gap-2">Calculator</a>
+    </div>
+  </div>
+
+  <!-- Filter -->
+  <div class="flex flex-wrap gap-2">
+    @for (f of filters; track f) {
+    <button (click)="activeFilter.set(f)" class="px-4 py-1.5 rounded-full text-sm font-medium transition-all"
+      [class]="activeFilter() === f ? 'bg-primary-maroon text-white shadow-maroon' : 'bg-white border border-gray-200 text-medium-gray hover:border-primary-maroon hover:text-primary-maroon'">
+      {{ f }}
+    </button>
+    }
+  </div>
+
+  <!-- Policy Cards -->
+  <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+    @for (policy of filteredPolicies(); track policy.policyId) {
+    <div class="card overflow-hidden hover:shadow-lg transition-all duration-300 group">
+      <!-- Card Header -->
+      <div class="bg-maroon-gradient p-5 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-24 h-24 rounded-full bg-white/5 -translate-y-8 translate-x-8"></div>
+        <div class="relative z-10">
+          <div class="flex items-start justify-between mb-3">
+            <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.955 11.955 0 003 10c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.249-8.25-3.285z" />
+              </svg>
+            </div>
+            @if (!policy.isActive) {
+            <span class="badge bg-gray-200/30 text-white text-[10px]">Discontinued</span>
+            } @else if (policy.waiverOfPremium) {
+            <span class="badge bg-accent-gold/80 text-deep-maroon text-[10px] font-bold">Waiver</span>
+            }
+          </div>
+          <h3 class="text-white font-bold text-lg leading-tight">{{ policy.policyName }}</h3>
+          <p class="text-white/70 text-xs mt-1">{{ policy.durationYears }} year plan</p>
+        </div>
+      </div>
+
+      <!-- Card Body -->
+      <div class="p-5 space-y-4">
+        <p class="text-xs text-medium-gray leading-relaxed line-clamp-2">{{ policy.description }}</p>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div class="bg-gray-50 rounded-lg p-3">
+            <p class="text-[10px] text-medium-gray uppercase font-semibold mb-1">Base Premium</p>
+            <p class="font-bold text-dark-gray">₹{{ (policy.basePremium || 0) | number }}<span
+                class="text-xs font-normal text-medium-gray">/mo</span></p>
+          </div>
+          <div class="bg-gray-50 rounded-lg p-3">
+            <p class="text-[10px] text-medium-gray uppercase font-semibold mb-1">Maturity Benefit</p>
+            <p class="font-bold text-dark-gray text-xs">₹{{ ((policy.maturityBenefitAmount || 0)/100000).toFixed(1) }}L
+            </p>
+          </div>
+          <div class="bg-gray-50 rounded-lg p-3">
+            <p class="text-[10px] text-medium-gray uppercase font-semibold mb-1">Coverage</p>
+            <p class="font-bold text-dark-gray text-xs">₹{{ ((policy.riskCoverageAmount || 0)/100000).toFixed(0) }}L</p>
+          </div>
+          <div class="bg-gray-50 rounded-lg p-3">
+            <p class="text-[10px] text-medium-gray uppercase font-semibold mb-1">Bonus</p>
+            <p class="font-bold text-emerald-600">{{ policy.bonusPercentage || 0 }}%</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2 text-xs text-medium-gray">
+          <span>Age {{ policy.minChildAge || 0 }}-{{ policy.maxChildAge || 0 }} yrs</span>
+          <span class="w-1 h-1 rounded-full bg-gray-300"></span>
+          <span>{{ policy.deathBenefitMultiplier || 0 }}x Death Benefit</span>
+        </div>
+
+        <div class="flex gap-2 pt-1">
+          <a [routerLink]="['/policies', policy.policyId, 'details']"
+            class="btn-secondary flex-1 text-center text-xs py-2">View Details</a>
+          @if (policy.isActive) {
+          <a routerLink="/applications/apply" [queryParams]="{policyId: policy.policyId}"
+            class="btn-primary flex-1 text-center text-xs py-2">Apply Now</a>
+          } @else {
+          <span class="flex-1 text-center text-xs py-2 rounded-lg bg-gray-100 text-gray-400 cursor-not-allowed select-none">
+            Discontinued
+          </span>
+          }
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</div>

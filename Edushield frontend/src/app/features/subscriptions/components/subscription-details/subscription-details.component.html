@@ -1,0 +1,51 @@
+
+    <div class="space-y-6 animate-fade-in">
+      <a routerLink="/subscriptions/my-subscriptions" class="text-primary-maroon text-sm hover:underline">← Back</a>
+      @if (sub()) {
+        <div class="bg-maroon-gradient rounded-2xl p-7 text-white">
+          <p class="text-white/60 text-xs font-mono mb-1">{{ sub()!.subscriptionNumber }}</p>
+          <h1 class="text-2xl font-bold mb-1">{{ sub()!.policyName }}</h1>
+          <p class="text-white/70 text-sm">{{ sub()!.childName }}</p>
+          <div class="grid grid-cols-3 gap-4 mt-5 pt-5 border-t border-white/20">
+            <div><p class="text-white/60 text-xs">Coverage</p><p class="font-bold text-lg">₹{{ (sub()!.coverageAmount/100000).toFixed(1) }}L</p></div>
+            <div><p class="text-white/60 text-xs">Premium/mo</p><p class="font-bold text-lg">₹{{ sub()!.premiumAmount.toLocaleString() }}</p></div>
+            <div><p class="text-white/60 text-xs">Total Paid</p><p class="font-bold text-lg text-accent-gold">₹{{ sub()!.totalPaidAmount.toLocaleString() }}</p></div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <div class="card p-6">
+            <h3 class="font-bold text-dark-gray mb-4">Subscription Timeline</h3>
+            <div class="space-y-4">
+              @for (event of timeline(); track event.label) {
+                <div class="flex items-start gap-3">
+                  <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" [class]="event.passed ? 'bg-primary-maroon text-white' : 'bg-gray-100 text-gray-400'">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                  </div>
+                  <div>
+                    <p class="text-sm font-semibold text-dark-gray">{{ event.label }}</p>
+                    <p class="text-xs text-medium-gray">{{ event.date | date:'dd MMM yyyy' }}</p>
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+          <div class="card p-6">
+            <h3 class="font-bold text-dark-gray mb-4">Details</h3>
+            <div class="space-y-3">
+              @for (d of detailItems(); track d.label) {
+                <div class="flex justify-between py-2 border-b border-gray-100 last:border-0">
+                  <span class="text-sm text-medium-gray">{{ d.label }}</span>
+                  <span class="text-sm font-semibold text-dark-gray">{{ d.value }}</span>
+                </div>
+              }
+            </div>
+            <div class="mt-4 flex gap-2">
+              <a routerLink="/payments/make-payment" class="btn-primary flex-1 text-center text-xs py-2">Pay Premium</a>
+              <a routerLink="/claims/file-claim" class="btn-secondary flex-1 text-center text-xs py-2">File Claim</a>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  

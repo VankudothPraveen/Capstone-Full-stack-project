@@ -1,0 +1,68 @@
+<div class="space-y-6">
+  <div>
+    <h1 class="page-header">Admin Dashboard</h1>
+    <p class="page-subheader">Overview of the entire insurance platform</p>
+  </div>
+
+  <!-- Admin Metrics -->
+  <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+    @for (m of metrics; track m.label) {
+    <div class="metric-card">
+      <p class="text-xs text-medium-gray font-semibold uppercase tracking-wider mb-2">{{ m.label }}</p>
+      <p class="text-2xl font-bold text-dark-gray">{{ m.value }}</p>
+      <span class="badge mt-2 inline-block" [class]="m.badgeClass">{{ m.trend }}</span>
+    </div>
+    }
+  </div>
+
+  <!-- Note: Pending Applications are now in Underwriter Dashboard, and Pending Claims are in Claims Officer Dashboard. Admin focuses on system health and reports. -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div class="card p-6 bg-gradient-to-br from-primary-maroon to-maroon-800 text-white">
+      <h3 class="font-bold text-lg mb-2">Welcome, Admin</h3>
+      <p class="text-white/80 text-sm mb-6">The system is running smoothly. Underwriters and Claims Officers are processing pending requests.</p>
+      <div class="flex gap-4">
+        <a routerLink="/admin/policies" class="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg text-xs font-bold transition-all border border-white/20">Manage Policies</a>
+        <a routerLink="/admin/reports" class="px-4 py-2 bg-white/20 hover:bg-white/30 rounded-lg text-xs font-bold transition-all">System Reports</a>
+      </div>
+    </div>
+    
+    <div class="card p-6 border-dashed border-2 border-gray-200 bg-gray-50 flex flex-col items-center justify-center text-center">
+      <div class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center mb-3">
+        <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      </div>
+      <h4 class="font-bold text-dark-gray text-sm">Role-Based Processing</h4>
+      <p class="text-[11px] text-medium-gray max-w-[240px]">Applications and claims are now managed by specialized roles. Use the sidebar to access system-wide logs if needed.</p>
+    </div>
+  </div>
+
+  <!-- Recent Revenue -->
+  <div class="card p-6">
+    <h3 class="font-bold text-dark-gray mb-5">Monthly Revenue</h3>
+    <div class="overflow-x-auto">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Month</th>
+            <th>Total Revenue</th>
+            <th>Payments</th>
+            <th>Claims</th>
+            <th>Net Revenue</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (r of revenueData().slice().reverse().slice(0,5); track r.month) {
+          <tr>
+            <td class="font-medium">{{ formatMonth(r.month) }} {{ r.year }}</td>
+            <td class="font-bold text-emerald-600">₹{{ (((r.totalRevenue || r.revenue || 0) || 0)/1000).toFixed(0) }}K</td>
+            <td>{{ r.totalPayments || r.policyCount || 0 }}</td>
+            <td class="text-red-500">{{ r.totalClaims || r.claimsCount || 0 }}</td>
+            <td class="font-bold text-dark-gray">₹{{ ((r.netRevenue || ((r.totalRevenue || r.revenue || 0) -
+              (r.totalClaims || 0)) || 0)/1000).toFixed(0) }}K</td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    <a routerLink="/admin/reports" class="btn-secondary btn-sm mt-4 inline-block">View Full Reports</a>
+  </div>
+</div>

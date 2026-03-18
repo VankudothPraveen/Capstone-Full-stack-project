@@ -1,0 +1,116 @@
+<!-- Hero Section -->
+<section
+  id="hero"
+  class="relative min-h-screen flex items-center bg-[#5e0c32]"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 w-full">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      
+      <!-- Left Content -->
+      <div>
+        <!-- Eyebrow label -->
+        <p class="text-accent-gold text-sm font-semibold uppercase tracking-widest mb-5">
+          Trusted by {{ formatNumber(stats().totalUsers) }}+ Families Across India
+        </p>
+
+        <!-- Headline -->
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight text-white mb-6">
+          Secure Your Child's Future<br/>
+          <span class="text-accent-gold">with Education Insurance</span>
+        </h1>
+
+        <!-- Subtext -->
+        <p class="text-lg text-white/75 max-w-xl leading-relaxed mb-8">
+          Plan today for your child's tomorrow. Protect their dreams with
+          affordable and flexible education insurance plans designed for every family.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-wrap gap-4 mb-12">
+          <button
+            (click)="goQuote()"
+            class="px-8 py-3.5 bg-accent-gold text-[#5e0c32] font-bold rounded-lg text-sm tracking-wide hover:bg-yellow-400 transition-colors duration-200"
+          >
+            Get a Free Quote
+          </button>
+          <button
+            (click)="goPlans()"
+            class="px-8 py-3.5 bg-transparent text-white font-semibold rounded-lg text-sm border border-white/40 hover:border-white hover:bg-white/10 transition-colors duration-200"
+          >
+            Explore Plans
+          </button>
+        </div>
+
+        <!-- Trust Indicators -->
+        <div class="flex flex-wrap gap-8 pt-8 border-t border-white/15">
+          <div class="flex items-center gap-3">
+            <div class="w-px h-8 bg-accent-gold"></div>
+            <div>
+              <p class="text-2xl font-extrabold text-white">{{ formatNumber(stats().totalUsers) }}+</p>
+              <p class="text-white/55 text-xs">Families Protected</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="w-px h-8 bg-accent-gold"></div>
+            <div>
+              <p class="text-2xl font-extrabold text-white">₹{{ formatNumber(stats().totalClaimsSettled) }}+</p>
+              <p class="text-white/55 text-xs">Claims Settled</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="w-px h-8 bg-accent-gold"></div>
+            <div>
+              <p class="text-2xl font-extrabold text-white">{{ stats().claimApprovalRate }}%</p>
+              <p class="text-white/55 text-xs">Claim Approval Rate</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="w-px h-8 bg-accent-gold"></div>
+            <div>
+              <p class="text-2xl font-extrabold text-white">IRDAI</p>
+              <p class="text-white/55 text-xs">Regulated & Trusted</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Image Grid -->
+      <div class="hidden lg:flex justify-center items-center">
+        <div class="relative w-full max-w-lg">
+          <div class="absolute -inset-4 bg-accent-gold/20 rounded-3xl blur-2xl"></div>
+          
+          <div class="grid grid-cols-2 gap-4 relative">
+            <!-- Parent helping child study - emotional & warm -->
+            <img 
+              src="/parent_child_study.png" 
+              alt="Loving mother helping child with homework"
+              class="w-full rounded-2xl shadow-xl object-cover h-[400px]"
+            />
+            <!-- Proud graduate - aspirational & emotional -->
+            <img 
+              src="/graduation_proud.png" 
+              alt="Proud graduate celebrating achievement"
+              class="w-full rounded-2xl shadow-xl object-cover h-[400px] mt-12"
+            />
+            
+            <!-- Floating Stats Card -->
+            <div class="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-white rounded-xl shadow-xl p-4 w-[200px]">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                  <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                </div>
+                <div>
+                  <p class="text-[10px] text-gray-500 font-medium uppercase tracking-wider">Active Policies</p>
+                  <p class="font-bold text-dark-gray text-sm">{{ stats().totalPolicies }} Plans</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

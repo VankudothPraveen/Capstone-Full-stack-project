@@ -1,0 +1,175 @@
+<div class="max-w-2xl mx-auto space-y-6 animate-fade-in">
+  <div>
+    <h1 class="page-header">File a Claim</h1>
+    <p class="page-subheader">Submit your insurance claim request</p>
+  </div>
+
+  @if (!submitted()) {
+  <div class="card p-8">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-5">
+      <div>
+        <label for="subscriptionId" class="form-label">Select Subscription</label>
+        <select id="subscriptionId" name="subscriptionId" formControlName="subscriptionId" class="form-select">
+          <option value="">-- Select Subscription --</option>
+          @for (s of subscriptions(); track s.subscriptionId) {
+          <option [value]="s.subscriptionId">{{ s.subscriptionNumber }} — {{ s.policyName }}</option>
+          }
+        </select>
+      </div>
+
+      <div>
+        <label class="form-label">Claim Type</label>
+        <div class="grid grid-cols-3 gap-3">
+          @for (t of claimTypes; track t.value) {
+          <button type="button" (click)="form.patchValue({ claimType: t.value })"
+            class="p-3 rounded-xl border-2 text-center transition-all"
+            [class]="form.get('claimType')?.value === t.value ? 'border-primary-maroon bg-primary-maroon/5' : 'border-gray-200 hover:border-primary-maroon/50'">
+            <p class="text-xs font-semibold text-primary-maroon mb-1">{{ t.label }}</p>
+            <p class="text-xs font-medium text-dark-gray">{{ t.label }}</p>
+          </button>
+          }
+        </div>
+      </div>
+
+      <div>
+        <label for="claimAmount" class="form-label">Claim Amount (₹)</label>
+        <input type="number" id="claimAmount" name="claimAmount" formControlName="claimAmount" class="form-input"
+          placeholder="Enter claim amount"
+          [class.error]="form.get('claimAmount')?.invalid && form.get('claimAmount')?.touched">
+        
+        @if (form.get('claimAmount')?.hasError('required') && form.get('claimAmount')?.touched) {
+        <p class="form-error">Claim amount is required</p>
+        }
+        
+        @if (form.get('claimAmount')?.hasError('min') && form.get('claimAmount')?.touched) {
+        <p class="form-error">Amount must be greater than 0</p>
+        }
+        
+        @if (form.get('claimAmount')?.hasError('claimAmountInvalid') && form.get('claimAmount')?.touched) {
+        <p class="form-error">Please enter a valid amount</p>
+        }
+        
+        @if (form.get('claimAmount')?.hasError('max') && form.get('claimAmount')?.touched) {
+        <p class="form-error">
+          @switch(form.get('claimType')?.value) {
+            @case('MATURITY') {
+              Claim amount cannot exceed maturity benefit (₹{{ maxClaimAmount() | number:'1.0-0' }})
+            }
+            @case('DEATH') {
+              Claim amount cannot exceed death benefit (₹{{ maxClaimAmount() | number:'1.0-0' }})
+            }
+            @case('PARTIAL_WITHDRAWAL') {
+              Claim amount cannot exceed 50% of coverage amount (₹{{ maxClaimAmount() | number:'1.0-0' }})
+            }
+            @default {
+              Claim amount exceeds maximum allowed (₹{{ maxClaimAmount() | number:'1.0-0' }})
+            }
+          }
+        </p>
+        }
+        
+        @if (maxClaimAmount() > 0 && form.get('claimType')?.value) {
+        <p class="text-sm text-medium-gray mt-2">
+          <span class="font-semibold">Max allowed: ₹{{ maxClaimAmount() | number:'1.0-0' }}</span>
+        </p>
+        }
+      </div>
+
+      @if (form.get('claimType')?.value === 'MATURITY') {
+      <div>
+        <label for="scoreSecured" class="form-label">Score Secured (%) *</label>
+        <input type="number" id="scoreSecured" name="scoreSecured" formControlName="scoreSecured" class="form-input"
+          placeholder="Enter the marks percentage"
+          [class.error]="form.get('scoreSecured')?.invalid && form.get('scoreSecured')?.touched">
+        @if (form.get('scoreSecured')?.hasError('min') && form.get('scoreSecured')?.touched) {
+        <p class="form-error">Claim approval is only provided for merit students who scored more than 85%.</p>
+        }
+        @if (form.get('scoreSecured')?.hasError('required') && form.get('scoreSecured')?.touched) {
+        <p class="form-error">Score percentage is required for maturity claims.</p>
+        }
+      </div>
+      }
+
+      <div>
+        <label for="reason" class="form-label">Reason / Description {{ form.get('claimType')?.value === 'PARTIAL_WITHDRAWAL' ? '*' : '' }}</label>
+        <textarea id="reason" name="reason" formControlName="reason" class="form-input resize-none" rows="3"
+          placeholder="Briefly describe the reason for claim"
+          [class.error]="form.get('reason')?.invalid && form.get('reason')?.touched"></textarea>
+        @if (form.get('reason')?.hasError('required') && form.get('reason')?.touched) {
+          <p class="form-error">Please provide a valid reason or description.</p>
+        }
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-sm text-amber-800">
+        Claims are subject to policy terms and supporting documents may be required. Processing takes 7-10 business
+        days.
+      </div>
+
+      <!-- Upload Documents Section -->
+      @if (requiredDocs().length > 0) {
+      <div class="space-y-4 pt-4 border-t border-gray-100">
+        <h3 class="font-bold text-dark-gray text-lg">Upload Required Claim Documents</h3>
+        @for (doc of requiredDocs(); track doc.documentType) {
+        <div
+          class="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 border border-gray-200 rounded-xl gap-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-primary-maroon/10 rounded-xl flex items-center justify-center">
+              <svg class="w-5 h-5 text-primary-maroon" fill="none" stroke="currentColor" stroke-width="1.5"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m6.75 12l-3-3m0 0l-3 3m3-3v6m-1.5-15H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+              </svg>
+            </div>
+            <div>
+              <p class="font-semibold text-dark-gray">{{ doc.documentType }}</p>
+              <p class="text-xs text-medium-gray">{{ uploadedFiles().has(doc.documentType) ?
+                uploadedFiles().get(doc.documentType)?.name : 'Not uploaded yet (PDF, JPG, PNG)' }}</p>
+            </div>
+          </div>
+          <div>
+            <label class="btn-secondary btn-sm cursor-pointer whitespace-nowrap">
+              {{ uploadedFiles().has(doc.documentType) ? 'Change File' : 'Upload File' }}
+              <input type="file" class="hidden" (change)="onFileSelected($event, doc.documentType)"
+                accept=".pdf,.jpg,.jpeg,.png">
+            </label>
+          </div>
+        </div>
+        }
+      </div>
+      } @else if (form.get('subscriptionId')?.value) {
+      <div class="p-4 text-center bg-gray-50 rounded-xl border border-gray-200 mt-4">
+        <p class="font-semibold text-dark-gray">No additional documents required</p>
+        <p class="text-xs text-medium-gray mt-1">You can submit your claim directly.</p>
+      </div>
+      }
+
+      <button type="submit" class="btn-primary w-full btn-lg" [disabled]="loading() || !canSubmit()">
+        @if (loading()) {
+        <span class="flex items-center justify-center gap-2">
+          <svg class="animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+          </svg>
+          Submitting...
+        </span>
+        } @else { Submit Claim }
+      </button>
+    </form>
+  </div>
+  } @else {
+  <div class="card p-10 text-center">
+    <div class="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
+      <svg class="w-10 h-10 text-emerald-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+      </svg>
+    </div>
+    <h2 class="text-2xl font-bold text-dark-gray mb-2">Claim Submitted!</h2>
+    <p class="text-medium-gray mb-6">Your claim #CLM{{ claimRef }} has been filed and will be reviewed within 7-10
+      business days.</p>
+    <div class="flex gap-3 justify-center">
+      <a routerLink="/claims/my-claims" class="btn-primary">View My Claims →</a>
+      <button (click)="submitted.set(false)" class="btn-secondary">File Another</button>
+    </div>
+  </div>
+  }
+</div>

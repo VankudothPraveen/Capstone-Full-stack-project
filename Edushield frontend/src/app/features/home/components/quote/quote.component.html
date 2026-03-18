@@ -1,0 +1,151 @@
+<!-- Quote / Premium Calculator Section -->
+<section id="quote" class="py-20 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-12 items-start">
+
+      <!-- Left Info -->
+      <div class="lg:pt-4">
+        <p class="text-primary-maroon text-sm font-semibold uppercase tracking-widest mb-3">Free Premium Calculator</p>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-dark-gray mb-4">
+          Calculate Your<br/>
+          <span class="text-primary-maroon">Premium in 30 Seconds</span>
+        </h2>
+        <p class="text-medium-gray text-lg mb-8">
+          Get an instant estimate of your monthly premium. No commitments, no hidden charges — just transparency.
+        </p>
+
+        <!-- Feature highlights -->
+        <div class="space-y-3">
+          @for (feat of features; track feat.label) {
+            <div class="flex items-start gap-4 bg-white rounded-xl px-4 py-3 shadow-card border border-gray-100">
+              <div class="w-1 h-full min-h-[28px] bg-primary-maroon rounded-full flex-shrink-0 mt-0.5"></div>
+              <div>
+                <p class="text-sm font-bold text-dark-gray">{{ feat.label }}</p>
+                <p class="text-xs text-medium-gray">{{ feat.desc }}</p>
+              </div>
+            </div>
+          }
+        </div>
+
+        <!-- Trust bar -->
+        <div class="mt-8 pt-6 border-t border-gray-200">
+          <p class="text-sm text-medium-gray">Rated <strong class="text-dark-gray">4.9 / 5</strong> by 50,000+ families across India</p>
+          <p class="text-xs text-medium-gray mt-1">IRDAI Regulated &nbsp;·&nbsp; 100% Secure &nbsp;·&nbsp; Instant Estimate</p>
+        </div>
+      </div>
+
+      <!-- Right Form Card -->
+      <div class="bg-white rounded-2xl shadow-card p-8 border border-gray-100">
+
+        @if (!result) {
+          <h3 class="text-xl font-bold text-dark-gray mb-6">Get Your Free Quote</h3>
+
+          <form (ngSubmit)="calculate()" class="space-y-5">
+
+            <!-- Parent Name -->
+            <div>
+              <label class="block text-sm font-semibold text-dark-gray mb-1.5">Parent / Guardian Name</label>
+              <input
+                type="text"
+                [(ngModel)]="form.parentName"
+                name="parentName"
+                placeholder="e.g. Rajesh Sharma"
+                class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary-maroon/30 focus:border-primary-maroon text-sm text-dark-gray placeholder-gray-400 transition-colors"
+              />
+            </div>
+
+            <!-- Child Age -->
+            <div>
+              <label class="block text-sm font-semibold text-dark-gray mb-1.5">Child's Current Age</label>
+              <input
+                type="number"
+                [(ngModel)]="form.childAge"
+                name="childAge"
+                min="0" max="17"
+                placeholder="e.g. 5"
+                class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary-maroon/30 focus:border-primary-maroon text-sm text-dark-gray placeholder-gray-400 transition-colors"
+              />
+            </div>
+
+            <!-- Education Goal -->
+            <div>
+              <label class="block text-sm font-semibold text-dark-gray mb-1.5">Education Goal</label>
+              <select
+                [(ngModel)]="form.educationGoal"
+                name="educationGoal"
+                class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary-maroon/30 focus:border-primary-maroon text-sm text-dark-gray transition-colors bg-white"
+              >
+                <option value="" disabled>Select education goal</option>
+                @for (g of goals; track g) {
+                  <option [value]="g">{{ g }}</option>
+                }
+              </select>
+            </div>
+
+            <!-- Coverage Amount -->
+            <div>
+              <label class="block text-sm font-semibold text-dark-gray mb-1.5">Desired Coverage Amount</label>
+              <select
+                [(ngModel)]="form.coverageAmount"
+                name="coverageAmount"
+                class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary-maroon/30 focus:border-primary-maroon text-sm text-dark-gray transition-colors bg-white"
+              >
+                <option [value]="null" disabled>Select coverage amount</option>
+                @for (opt of coverageOptions; track opt) {
+                  <option [value]="opt">{{ formatAmount(opt) }}</option>
+                }
+              </select>
+            </div>
+
+            <!-- Submit -->
+            <button
+              type="submit"
+              [disabled]="!isValid() || submitting"
+              class="w-full py-3.5 rounded-lg font-bold text-white bg-primary-maroon hover:bg-deep-maroon disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 flex items-center justify-center gap-2"
+            >
+              @if (submitting) {
+                <span class="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin"></span>
+                Calculating...
+              } @else {
+                Calculate Premium
+              }
+            </button>
+          </form>
+        }
+
+        <!-- Result Card -->
+        @if (result) {
+          <div class="text-center">
+            <div class="w-12 h-12 bg-primary-maroon/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-6 h-6 text-primary-maroon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-dark-gray mb-2">Your Estimated Premium</h3>
+            <p class="text-medium-gray text-sm mb-6">Based on your inputs, here is your personalised estimate:</p>
+
+            <div class="bg-primary-maroon rounded-xl p-6 mb-6">
+              <p class="text-white/70 text-sm mb-1">Estimated Monthly Premium</p>
+              <p class="text-4xl font-extrabold text-accent-gold">
+                ₹{{ result.estimatedMonthlyPremium.toLocaleString('en-IN') }}
+              </p>
+              <p class="text-white/60 text-xs mt-1">per month</p>
+            </div>
+
+            <div class="flex gap-3">
+              <button
+                (click)="reset()"
+                class="flex-1 py-3 rounded-lg border-2 border-primary-maroon text-primary-maroon font-semibold text-sm hover:bg-primary-maroon/5 transition-colors"
+              >Recalculate</button>
+              <button
+                class="flex-1 py-3 rounded-lg bg-primary-maroon text-white font-semibold text-sm hover:bg-deep-maroon transition-colors"
+                onclick="window.location.href='/auth/register'"
+              >Register &amp; Apply</button>
+            </div>
+          </div>
+        }
+
+      </div>
+    </div>
+  </div>
+</section>

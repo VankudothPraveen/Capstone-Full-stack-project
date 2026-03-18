@@ -1,0 +1,36 @@
+﻿[33mΓ¥»[39m Building...
+[32mΓ£ö[39m Building...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                       [2m | [22m [1mRaw size[22m
+[32mchunk-2LS3DP57.js[39m  [2m | [22m[2m-[22m                           [2m | [22m[36m877.25 kB[39m[2m | [22m
+[32mchunk-EVPSTEFS.js[39m  [2m | [22m[2m-[22m                           [2m | [22m[36m329.49 kB[39m[2m | [22m
+[32mchunk-4ODKFRTB.js[39m  [2m | [22m[2m-[22m                           [2m | [22m[36m166.41 kB[39m[2m | [22m
+[32mstyles.css[39m         [2m | [22m[2mstyles[22m                      [2m | [22m [36m50.06 kB[39m[2m | [22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                        [2m | [22m  [36m7.22 kB[39m[2m | [22m
+[32mchunk-LAFCXBGK.js[39m  [2m | [22m[2m-[22m                           [2m | [22m  [36m5.16 kB[39m[2m | [22m
+[32mchunk-BHCUL4H7.js[39m  [2m | [22m[2m-[22m                           [2m | [22m  [36m3.01 kB[39m[2m | [22m
+[32mchunk-OLYUQEB5.js[39m  [2m | [22m[2m-[22m                           [2m | [22m  [36m1.31 kB[39m[2m | [22m
+
+[1m [22m                  [2m | [22m[1mInitial total[22m               [2m | [22m  [1m1.44 MB[22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                       [2m | [22m [1mRaw size[22m
+[32mchunk-SLACPTCH.js[39m  [2m | [22m[2m-[22m                           [2m | [22m[36m440.60 kB[39m[2m | [22m
+[32mchunk-ZBNNVEKG.js[39m  [2m | [22m[2m-[22m                           [2m | [22m[36m152.89 kB[39m[2m | [22m
+[32mchunk-2LFVJT5A.js[39m  [2m | [22m[2mapply-component[22m             [2m | [22m [36m35.99 kB[39m[2m | [22m
+[32mchunk-BRS4DBM6.js[39m  [2m | [22m[2mlayout-component[22m            [2m | [22m [36m31.10 kB[39m[2m | [22m
+[32mchunk-H4OI7WWN.js[39m  [2m | [22m[2mdashboard-component[22m         [2m | [22m [36m22.87 kB[39m[2m | [22m
+[32mchunk-7X37X7GI.js[39m  [2m | [22m[2mlogin-component[22m             [2m | [22m [36m22.71 kB[39m[2m | [22m
+[32mchunk-CBKMYZ2A.js[39m  [2m | [22m[2mregister-component[22m          [2m | [22m [36m21.94 kB[39m[2m | [22m
+[32mchunk-27BFT3GI.js[39m  [2m | [22m[2mbenefit-calculator-component[22m[2m | [22m [36m21.80 kB[39m[2m | [22m
+[32mchunk-RN3LK56T.js[39m  [2m | [22m[2mpolicy-calculator-component[22m [2m | [22m [36m20.96 kB[39m[2m | [22m
+[32mchunk-BSEUJ3CA.js[39m  [2m | [22m[2madmin-dashboard-component[22m   [2m | [22m [36m19.67 kB[39m[2m | [22m
+[32mchunk-ZBYFIEGI.js[39m  [2m | [22m[2mmake-payment-component[22m      [2m | [22m [36m19.42 kB[39m[2m | [22m
+[32mchunk-P3OD2TJL.js[39m  [2m | [22m[2mpolicy-management-component[22m [2m | [22m [36m18.79 kB[39m[2m | [22m
+[32mchunk-SOBIPWCK.js[39m  [2m | [22m[2mchild-form-component[22m        [2m | [22m [36m18.60 kB[39m[2m | [22m
+[32mchunk-37RPVLNE.js[39m  [2m | [22m[2mfile-claim-component[22m        [2m | [22m [36m17.56 kB[39m[2m | [22m
+[32mchunk-TNIKWYJR.js[39m  [2m | [22m[2mpolicy-catalog-component[22m    [2m | [22m [36m16.18 kB[39m[2m | [22m
+[2m...and 18 more lazy chunks files. Use "--verbose" to show all the files.[22m
+
+Application bundle generation complete. [5.199 seconds] - 2026-03-01T07:48:55.397Z
+
+Output location: P:\CapStone Project\child frontend\child-insurance-app\dist\child-insurance-app
+

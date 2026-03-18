@@ -1,0 +1,133 @@
+    <div class="space-y-6 animate-fade-in">
+      <div>
+        <h1 class="text-2xl font-black text-dark-gray tracking-tight">Claims Officer Dashboard</h1>
+        <p class="text-xs text-medium-gray mt-1">Review and process settlement requests</p>
+      </div>
+
+      <!-- Metrics -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all">
+          <p class="text-[10px] text-medium-gray font-bold uppercase tracking-wider mb-1">Pending Claims</p>
+          <p class="text-2xl font-black text-dark-gray">{{ pendingCount() }}</p>
+          <span class="badge badge-warning mt-2 inline-block text-[10px]">Action Required</span>
+        </div>
+        <div class="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all">
+          <p class="text-[10px] text-medium-gray font-bold uppercase tracking-wider mb-1">Total Claim Value</p>
+          <p class="text-2xl font-black text-dark-gray">₹{{ totalClaimValue().toLocaleString() }}</p>
+          <span class="badge badge-info mt-2 inline-block text-[10px]">Active Requests</span>
+        </div>
+        <div class="bg-emerald-600 p-5 rounded-2xl shadow-sm text-white">
+          <p class="text-[10px] text-white/70 font-bold uppercase tracking-wider mb-1">Processing SLA</p>
+          <p class="text-2xl font-black">48 Hrs</p>
+          <p class="text-[10px] text-white/50 mt-2">Target Response Time</p>
+        </div>
+      </div>
+
+      <!-- Urgent Claim Requests -->
+      <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
+        <div class="flex items-center justify-between mb-6">
+          <h3 class="font-bold text-dark-gray">Urgent Claim Requests</h3>
+          <a routerLink="/admin/claims" class="text-primary-maroon text-xs font-bold hover:underline bg-primary-maroon/5 px-3 py-1.5 rounded-lg transition-all">Go to Claims Management</a>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left">
+            <thead>
+              <tr class="text-[10px] uppercase text-medium-gray border-b border-gray-100">
+                <th class="pb-3 font-bold">Policy & Type</th>
+                <th class="pb-3 font-bold">Amount</th>
+                <th class="pb-3 font-bold">Requested On</th>
+                <th class="pb-3 font-bold text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (c of pendingClaims().slice(0, 5); track c.claimId) {
+                <tr class="border-b border-gray-50 last:border-0 hover:bg-gray-50/50 transition-colors">
+                  <td class="py-4">
+                    <p class="text-sm font-bold text-dark-gray">{{ c.policyName }}</p>
+                    <span class="text-[9px] uppercase font-bold text-primary-maroon tracking-wider">{{ c.claimType }}</span>
+                  </td>
+                  <td class="py-4">
+                    <span class="font-bold text-dark-gray text-sm">₹{{ c.claimAmount.toLocaleString() }}</span>
+                  </td>
+                  <td class="py-4 text-xs text-medium-gray">
+                    {{ c.claimDate | date:'dd MMM yyyy' }}
+                  </td>
+                  <td class="py-4 text-right">
+                    <div class="flex gap-1 justify-end">
+                      <button (click)="viewDocs(c.claimId)" class="px-2 py-1 bg-secondary text-dark-gray text-[9px] font-bold rounded hover:bg-gray-200 transition-colors">View Docs</button>
+                      <button (click)="downloadAllDocuments(c.claimId)" class="px-2 py-1 bg-primary-maroon text-white text-[9px] font-bold rounded hover:bg-deep-maroon transition-colors" title="Download All Docs">
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                      </button>
+                      <button (click)="approveClaim(c.claimId)" class="px-2 py-1 bg-emerald-500 text-white text-[9px] font-bold rounded hover:bg-emerald-600 transition-colors">Approve</button>
+                    </div>
+                  </td>
+                </tr>
+              }
+              @empty {
+                <tr>
+                  <td colspan="4" class="py-12 text-center text-medium-gray text-sm">No pending claims found. Good job!</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <!-- Claim Verification Checklist -->
+      <div class="bg-white rounded-2xl border border-emerald-200 p-5 border-l-4 border-l-emerald-500">
+        <h4 class="font-bold text-dark-gray text-sm mb-3">Claim Verification Checklist</h4>
+        <ul class="text-[10px] text-medium-gray space-y-2">
+          <li class="flex items-center gap-2"><svg class="w-3 h-3 text-emerald-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg> Verify Subscription is ACTIVE and not lapsed.</li>
+          <li class="flex items-center gap-2"><svg class="w-3 h-3 text-emerald-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg> Check all mandatory documents are uploaded and legible.</li>
+          <li class="flex items-center gap-2"><svg class="w-3 h-3 text-emerald-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg> Ensure claim amount is within limit of policy terms.</li>
+          <li class="flex items-center gap-2"><svg class="w-3 h-3 text-emerald-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg> Cross-verify beneficiary identity against policy records.</li>
+        </ul>
+      </div>
+
+      <!-- Documents Modal -->
+      @if (showDocsModal()) {
+      <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl p-8 max-h-[90vh] overflow-y-auto">
+          <div class="flex justify-between items-center mb-6">
+            <h3 class="text-xl font-bold text-dark-gray">Claim Documents #CLM{{ selectedClaimId() }}</h3>
+            <button (click)="showDocsModal.set(false)" class="text-gray-400 hover:text-gray-600">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+
+          @if (claimDocs().length > 0) {
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            @for (doc of claimDocs(); track doc.documentId) {
+            <div class="border border-gray-100 rounded-xl p-4 flex flex-col items-center gap-3 hover:bg-gray-50 transition-colors">
+              <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center text-primary-maroon">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+              </div>
+              <div class="text-center">
+                <p class="text-sm font-bold text-dark-gray">{{ doc.documentType }}</p>
+                <p class="text-[10px] text-medium-gray">{{ doc.fileName }}</p>
+              </div>
+              <div class="flex gap-2 w-full">
+                <button (click)="viewSingleDocument(doc)" class="btn-secondary btn-xs flex-1 text-[10px]">View</button>
+                <button (click)="downloadSingleDocument(doc)" class="btn-primary btn-xs flex-1 text-[10px]">Download</button>
+              </div>
+            </div>
+            }
+          </div>
+          } @else {
+          <div class="text-center py-10 bg-gray-50 rounded-2xl">
+            <p class="text-medium-gray">No documents found for this claim.</p>
+          </div>
+          }
+
+          <div class="mt-8 flex justify-end">
+            <button (click)="showDocsModal.set(false)" class="btn-secondary w-full sm:w-auto px-10">Close</button>
+          </div>
+        </div>
+      </div>
+      }
+    </div>

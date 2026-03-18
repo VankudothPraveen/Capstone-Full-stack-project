@@ -1,0 +1,85 @@
+<div class="space-y-6 animate-fade-in">
+  <div>
+    <h1 class="page-header">My Subscriptions</h1>
+    <p class="page-subheader">All your active and past policy subscriptions</p>
+  </div>
+
+  <!-- Loading State -->
+  @if (loading()) {
+  <div class="card p-16 text-center">
+    <div class="flex justify-center mb-4">
+      <svg class="animate-spin w-10 h-10 text-primary-maroon" fill="none" viewBox="0 0 24 24">
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
+        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+      </svg>
+    </div>
+    <p class="text-medium-gray text-sm">Loading your subscriptions...</p>
+  </div>
+  }
+
+  <!-- Error State -->
+  @if (!loading() && error()) {
+  <div class="card p-8 text-center border border-red-200 bg-red-50">
+    <h3 class="font-bold text-red-700 mb-1">Could not load subscriptions</h3>
+    <p class="text-red-500 text-sm mb-4">{{ error() }}</p>
+    <p class="text-xs text-medium-gray">This is usually because your application hasn't been approved yet, or there may
+      be a backend issue.</p>
+  </div>
+  }
+
+  <!-- Search Header -->
+  <div class="relative w-full max-w-sm mb-6">
+    <input type="text" [ngModel]="searchQuery()" (ngModelChange)="searchQuery.set($event)"
+      placeholder="Search subscription #, policy, child..." 
+      class="w-full pl-9 pr-4 py-2 text-xs border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-maroon/20 focus:border-primary-maroon outline-none transition-all">
+    <svg class="w-4 h-4 absolute left-3 top-2.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+  </div>
+
+  <!-- Subscriptions Grid -->
+  @if (!loading()) {
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+    @for (sub of filteredSubscriptions(); track sub.subscriptionId) {
+    <div class="card p-5 hover:shadow-lg transition-shadow">
+      <div class="flex items-start justify-between mb-4">
+        <div>
+          <p class="font-mono text-xs text-primary-maroon font-bold">{{ sub.subscriptionNumber }}</p>
+          <h3 class="font-bold text-dark-gray mt-1">{{ sub.policyName }}</h3>
+          <p class="text-sm text-medium-gray">{{ sub.childName }}</p>
+        </div>
+        <span class="badge" [class]="getStatusCls(sub.status)">{{ sub.status }}</span>
+      </div>
+      <div class="grid grid-cols-2 gap-3 mb-4">
+        <div class="bg-gray-50 rounded-lg p-2.5">
+          <p class="text-[10px] text-medium-gray uppercase">Coverage</p>
+          <p class="font-bold text-dark-gray text-sm">₹{{ ((sub.coverageAmount || 0)/100000).toFixed(1) }}L</p>
+        </div>
+        <div class="bg-gray-50 rounded-lg p-2.5">
+          <p class="text-[10px] text-medium-gray uppercase">Premium/mo</p>
+          <p class="font-bold text-dark-gray text-sm">₹{{ (sub.premiumAmount || 0).toLocaleString() }}</p>
+        </div>
+        <div class="bg-gray-50 rounded-lg p-2.5">
+          <p class="text-[10px] text-medium-gray uppercase">Total Paid</p>
+          <p class="font-bold text-emerald-600 text-sm">₹{{ (sub.totalPaidAmount || 0).toLocaleString() }}</p>
+        </div>
+        <div class="bg-gray-50 rounded-lg p-2.5">
+          <p class="text-[10px] text-medium-gray uppercase">Maturity</p>
+          <p class="font-bold text-dark-gray text-sm">{{ sub.maturityDate | date:'MMM yyyy' }}</p>
+        </div>
+      </div>
+      <a [routerLink]="['/subscriptions', sub.subscriptionId, 'details']"
+        class="btn-secondary w-full text-center text-xs py-2 block">View Details →</a>
+    </div>
+    }
+    @empty {
+    <div class="col-span-2 card p-16 text-center">
+      <h3 class="font-bold text-dark-gray mb-2">No subscriptions yet</h3>
+      <p class="text-medium-gray text-sm mb-2">Subscriptions are created only after your policy application is
+        <strong>approved</strong> by an admin.</p>
+      <p class="text-medium-gray text-xs mb-4">Check <a routerLink="/applications/my-applications"
+          class="text-primary-maroon underline">My Applications</a> to see if your application is pending approval.</p>
+      <a routerLink="/policies/catalog" class="btn-primary inline-block">Browse Policies →</a>
+    </div>
+    }
+  </div>
+  }
+</div>

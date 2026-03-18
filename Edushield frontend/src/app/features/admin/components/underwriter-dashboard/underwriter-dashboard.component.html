@@ -1,0 +1,240 @@
+    <div class="space-y-6 animate-fade-in">
+      <div>
+        <h1 class="text-2xl font-black text-dark-gray tracking-tight">Underwriter Dashboard</h1>
+        <p class="text-xs text-medium-gray mt-1">Process and assess pending policy applications</p>
+      </div>
+
+      <!-- Metrics -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all">
+          <p class="text-[10px] text-medium-gray font-bold uppercase tracking-wider mb-1">Total Pending</p>
+          <p class="text-2xl font-black text-dark-gray">{{ pendingApps().length }}</p>
+          <span class="badge badge-warning mt-2 inline-block text-[10px]">Needs Review</span>
+        </div>
+        <div class="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all">
+          <p class="text-[10px] text-medium-gray font-bold uppercase tracking-wider mb-1">Average Risk Score</p>
+          <p class="text-2xl font-black text-dark-gray">{{ avgRiskScore() }}</p>
+          <span class="badge badge-info mt-2 inline-block text-[10px]">Platform Avg</span>
+        </div>
+        <div class="bg-primary-maroon p-5 rounded-2xl shadow-sm text-white">
+          <p class="text-[10px] text-white/70 font-bold uppercase tracking-wider mb-1">Processing Priority</p>
+          <p class="text-xl font-black">HIGH</p>
+          <p class="text-[10px] text-white/50 mt-2">SLA: 24 Hours</p>
+        </div>
+      </div>
+
+      <!-- Recent Applications Table -->
+      <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
+        <div class="flex items-center justify-between mb-6">
+          <h3 class="font-bold text-dark-gray">Recent Applications</h3>
+          <a routerLink="/underwriter/applications" class="text-primary-maroon text-xs font-bold hover:underline bg-primary-maroon/5 px-3 py-1.5 rounded-lg transition-all">View All Applications</a>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left">
+            <thead>
+              <tr class="text-[10px] uppercase text-medium-gray border-b border-gray-100">
+                <th class="pb-3 font-bold">Applicant & Policy</th>
+                <th class="pb-3 font-bold text-center">Risk Score</th>
+                <th class="pb-3 font-bold text-center">Category</th>
+                <th class="pb-3 font-bold">Applied On</th>
+                <th class="pb-3 font-bold text-right">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (app of pendingApps().slice(0, 5); track app.applicationId) {
+                <tr class="border-b border-gray-50 last:border-0 hover:bg-gray-50/50 transition-colors">
+                  <td class="py-4">
+                    <p class="text-sm font-bold text-dark-gray">{{ app.policyName }}</p>
+                    <p class="text-[10px] text-medium-gray">Child: {{ app.childName }}</p>
+                  </td>
+                  <td class="py-4 text-center">
+                    <span class="font-mono font-bold text-sm" [class.text-red-600]="(app.riskScore || 0) > 60" [class.text-amber-600]="(app.riskScore || 0) > 30 && (app.riskScore || 0) <= 60" [class.text-green-600]="(app.riskScore || 0) <= 30">{{ app.riskScore || 'N/A' }}</span>
+                  </td>
+                  <td class="py-4 text-center">
+                    @if (app.riskCategory) {
+                      <span class="px-2 py-0.5 rounded-full text-[9px] font-bold" 
+                        [class]="app.riskCategory === 'LOW' ? 'bg-green-100 text-green-700' : app.riskCategory === 'MEDIUM' ? 'bg-amber-100 text-amber-700' : 'bg-red-100 text-red-700'">
+                        {{ app.riskCategory }}
+                      </span>
+                    } @else {
+                      <span class="text-[10px] text-gray-400">PENDING</span>
+                    }
+                  </td>
+                  <td class="py-4 text-xs text-medium-gray">
+                    {{ app.applicationDate | date:'dd MMM yyyy' }}
+                  </td>
+                  <td class="py-4 text-right">
+                    <div class="flex gap-1 justify-end">
+                      <button (click)="viewDocs(app.applicationId)" class="px-2 py-1 bg-secondary text-dark-gray text-[9px] font-bold rounded hover:bg-gray-200 transition-colors">View</button>
+                      <button (click)="downloadAllDocuments(app.applicationId)" class="px-2 py-1 bg-primary-maroon text-white text-[9px] font-bold rounded hover:bg-deep-maroon transition-colors" title="Download All Docs">
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                      </button>
+                      <a [routerLink]="['/underwriter/applications']" [queryParams]="{appId: app.applicationId}" class="px-2 py-1 border border-primary-maroon text-primary-maroon text-[9px] font-bold rounded hover:bg-primary-maroon/5 transition-colors">Assess</a>
+                    </div>
+                  </td>
+                </tr>
+              }
+              @empty {
+                <tr>
+                  <td colspan="5" class="py-12 text-center">
+                    <div class="flex flex-col items-center">
+                      <div class="w-12 h-12 bg-gray-50 rounded-full flex items-center justify-center mb-3">
+                        <svg class="w-6 h-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                      </div>
+                      <p class="text-medium-gray text-sm">All caught up! No pending applications.</p>
+                    </div>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <!-- How Premiums Are Calculated -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-white rounded-2xl border border-blue-200 p-5">
+          <h4 class="text-blue-800 font-bold text-sm mb-3 flex items-center gap-2">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+            How Premiums Are Calculated
+          </h4>
+          <p class="text-blue-700/80 text-[11px] leading-relaxed mb-3">
+            Premiums are dynamically adjusted based on the risk score. The risk score (0–100) is calculated from:
+          </p>
+          <div class="space-y-2">
+            <div class="flex justify-between items-center text-[10px] bg-blue-50 rounded-lg px-3 py-2">
+              <span class="font-bold text-blue-800">Parent Age (21–30: 10pts, 31–40: 15pts, 41–50: 25pts, 51–60: 40pts)</span>
+            </div>
+            <div class="flex justify-between items-center text-[10px] bg-blue-50 rounded-lg px-3 py-2">
+              <span class="font-bold text-blue-800">Occupation Risk (5–30pts based on profession)</span>
+            </div>
+            <div class="flex justify-between items-center text-[10px] bg-blue-50 rounded-lg px-3 py-2">
+              <span class="font-bold text-blue-800">Annual Income (>₹15L: 5pts, ₹8–15L: 10pts, ₹4–8L: 20pts, <₹4L: 30pts)</span>
+            </div>
+            <div class="flex justify-between items-center text-[10px] bg-blue-50 rounded-lg px-3 py-2">
+              <span class="font-bold text-blue-800">Coverage Amount (≤₹10L: 5pts, ₹10–25L: 10pts, ₹25–50L: 20pts, >₹50L: 30pts)</span>
+            </div>
+          </div>
+          <div class="mt-3 pt-3 border-t border-blue-100">
+            <p class="text-[10px] font-bold text-blue-800 mb-1">Risk Multipliers:</p>
+            <div class="grid grid-cols-4 gap-2 text-[9px]">
+              <div class="bg-green-50 text-green-700 rounded px-2 py-1 text-center font-bold">LOW: x1.0</div>
+              <div class="bg-amber-50 text-amber-700 rounded px-2 py-1 text-center font-bold">MEDIUM: x1.2</div>
+              <div class="bg-orange-50 text-orange-700 rounded px-2 py-1 text-center font-bold">HIGH: x1.5</div>
+              <div class="bg-red-50 text-red-700 rounded px-2 py-1 text-center font-bold">V.HIGH: x2.0</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-white rounded-2xl border border-amber-200 p-5">
+          <h4 class="text-amber-800 font-bold text-sm mb-3 flex items-center gap-2">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path><path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"></path></svg>
+            Underwriter Guidelines
+          </h4>
+          <ul class="text-amber-700/80 text-[10px] space-y-2">
+            <li class="flex items-start gap-2"><span class="w-1.5 h-1.5 rounded-full bg-amber-400 mt-1 flex-shrink-0"></span> Verify identity documents match child details before approval.</li>
+            <li class="flex items-start gap-2"><span class="w-1.5 h-1.5 rounded-full bg-amber-400 mt-1 flex-shrink-0"></span> Risk scores > 75 require careful secondary review.</li>
+            <li class="flex items-start gap-2"><span class="w-1.5 h-1.5 rounded-full bg-amber-400 mt-1 flex-shrink-0"></span> You can revise the premium during approval based on your assessment.</li>
+            <li class="flex items-start gap-2"><span class="w-1.5 h-1.5 rounded-full bg-amber-400 mt-1 flex-shrink-0"></span> Always provide a reason when rejecting an application.</li>
+            <li class="flex items-start gap-2"><span class="w-1.5 h-1.5 rounded-full bg-amber-400 mt-1 flex-shrink-0"></span> Coverage must not exceed 5x the applicant's annual income.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Quick Risk Calculator -->
+      <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 col-span-1 md:col-span-2 mt-2">
+        <h4 class="font-bold text-dark-gray mb-4 flex items-center gap-2">
+          <svg class="w-5 h-5 text-primary-maroon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+          Quick Risk Calculator
+        </h4>
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+          <div>
+            <label class="form-label text-[10px]">Base Premium (₹)</label>
+            <input type="number" class="form-input text-sm py-1.5" [ngModel]="calcBasePremium()" (ngModelChange)="calcBasePremium.set($event)">
+          </div>
+          <div>
+            <label class="form-label text-[10px]">Parent Age</label>
+            <input type="number" class="form-input text-sm py-1.5" [ngModel]="calcAge()" (ngModelChange)="calcAge.set($event)">
+          </div>
+          <div>
+            <label class="form-label text-[10px]">Occupation</label>
+            <select class="form-input text-sm py-1.5" [ngModel]="calcOccupation()" (ngModelChange)="calcOccupation.set($event)">
+              <option value="">Select...</option>
+              @for (occ of occupations; track occ) { <option [value]="occ">{{ occ }}</option> }
+            </select>
+          </div>
+          <div>
+            <label class="form-label text-[10px]">Annual Income (₹)</label>
+            <input type="number" class="form-input text-sm py-1.5" [ngModel]="calcIncome()" (ngModelChange)="calcIncome.set($event)">
+          </div>
+          <div>
+            <label class="form-label text-[10px]">Coverage Amt (₹)</label>
+            <input type="number" class="form-input text-sm py-1.5" [ngModel]="calcCoverage()" (ngModelChange)="calcCoverage.set($event)">
+          </div>
+        </div>
+        
+        @if (calcResult()) {
+          <div class="mt-5 p-4 bg-gray-50 rounded-xl border border-gray-200 flex flex-wrap gap-6 items-center">
+            <div>
+              <p class="text-[10px] text-medium-gray font-bold uppercase mb-1">Risk Info</p>
+              <div class="flex items-center gap-2">
+                <span class="font-mono text-sm font-bold text-dark-gray">Score: {{ calcResult()?.riskScore }}</span>
+                <span class="badge text-[10px]" [class]="getRiskColor(calcResult()?.riskCategory || '')">{{ calcResult()?.riskCategory }}</span>
+              </div>
+            </div>
+            <div class="h-8 w-px bg-gray-300 hidden sm:block"></div>
+            <div>
+              <p class="text-[10px] text-medium-gray font-bold uppercase mb-1">Final Calculated Premium</p>
+              <p class="text-xl font-black text-primary-maroon">₹{{ calcResult()?.calculatedPremium }}</p>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- Documents Modal -->
+    @if (showDocsModal()) {
+    <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
+      <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl p-8 max-h-[90vh] overflow-y-auto">
+        <div class="flex justify-between items-center mb-6">
+          <h3 class="text-xl font-bold text-dark-gray">Application Documents #APP{{ selectedAppId() }}</h3>
+          <button (click)="showDocsModal.set(false)" class="text-gray-400 hover:text-gray-600">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        @if (appDocs().length > 0) {
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          @for (doc of appDocs(); track doc.documentId) {
+          <div class="border border-gray-100 rounded-xl p-4 flex flex-col items-center gap-3 hover:bg-gray-50 transition-colors">
+            <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center text-primary-maroon">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+            </div>
+            <div class="text-center">
+              <p class="text-sm font-bold text-dark-gray">{{ doc.documentType }}</p>
+              <p class="text-[10px] text-medium-gray">{{ doc.fileName }}</p>
+            </div>
+            <div class="flex gap-2 w-full">
+              <button (click)="viewSingleDocument(doc)" class="btn-secondary btn-xs flex-1 text-[10px]">View</button>
+              <button (click)="downloadSingleDocument(doc)" class="btn-primary btn-xs flex-1 text-[10px]">Download</button>
+            </div>
+          </div>
+          }
+        </div>
+        } @else {
+        <div class="text-center py-10 bg-gray-50 rounded-2xl">
+          <p class="text-medium-gray">No documents found for this application.</p>
+        </div>
+        }
+
+        <div class="mt-8 flex justify-end">
+          <button (click)="showDocsModal.set(false)" class="btn-secondary w-full sm:w-auto px-10">Close</button>
+        </div>
+      </div>
+    </div>
+    }

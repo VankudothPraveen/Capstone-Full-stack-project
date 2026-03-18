@@ -1,0 +1,60 @@
+﻿<div class="space-y-6 animate-fade-in">
+  <div>
+    <h1 class="page-header">Claim Management</h1>
+    <p class="page-subheader">Review and process all insurance claims</p>
+  </div>
+  <div class="flex gap-2 flex-wrap">
+    @for (f of filters; track f) {
+    <button (click)="activeFilter.set(f)" class="px-3 py-1.5 rounded-full text-xs font-medium border transition-all"
+      [class]="activeFilter() === f ? 'bg-primary-maroon text-white' : 'bg-white border-gray-200 text-medium-gray hover:border-primary-maroon'">{{
+      f }}</button>
+    }
+  </div>
+  <div class="card overflow-hidden">
+    <div class="overflow-x-auto">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Policy</th>
+            <th>Type</th>
+            <th>Amount</th>
+            <th>Filed</th>
+            <th>Status</th>
+            <th>Rejection Reason</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (c of filteredClaims(); track c.claimId) {
+          <tr>
+            <td class="font-mono text-xs">#CLM{{ c.claimId }}</td>
+            <td class="font-medium text-dark-gray">{{ c.policyName }}</td>
+            <td><span class="badge badge-info text-[10px]">{{ c.claimType.replace('_',' ') }}</span></td>
+            <td class="font-bold text-dark-gray">₹{{ c.claimAmount.toLocaleString() }}</td>
+            <td class="text-medium-gray">{{ c.claimDate | date:'dd MMM yyyy' }}</td>
+            <td><span class="badge" [class]="getStatusCls(c.status)">{{ c.status }}</span></td>
+            <td>
+              @if (c.rejectionReason) {
+                <span class="text-xs text-red-600 italic">{{ c.rejectionReason }}</span>
+              } @else {
+                <span class="text-xs text-medium-gray">—</span>
+              }
+            </td>
+            <td>
+              @if (c.status === 'PENDING' || c.status === 'SUBMITTED') {
+              <div class="flex gap-1">
+                <button (click)="approve(c.claimId)" class="btn-success btn-sm text-xs">Approve</button>
+                <button (click)="openRejectModal(c.claimId)" class="btn-danger btn-sm text-xs">Reject</button>
+              </div>
+              } @else {
+                <span class="text-xs text-medium-gray">—</span>
+              }
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,290 @@
+﻿[33mΓ¥»[39m Building...
+[32mΓ£ö[39m Building...
+[1mInitial chunk files[22m                                                                   [2m | [22m[1mNames[22m                                                                              [2m | [22m [1mRaw size[22m
+[32mchunk-Z6HNEG7N.js[39m                                                                     [2m | [22m[2m-[22m                                                                                  [2m | [22m  [36m2.18 MB[39m[2m | [22m
+[32mpolyfills.js[39m                                                                          [2m | [22m[2mpolyfills[22m                                                                          [2m | [22m  [36m1.01 MB[39m[2m | [22m
+[32mchunk-PRNHPMQD.js[39m                                                                     [2m | [22m[2m-[22m                                                                                  [2m | [22m[36m250.28 kB[39m[2m | [22m
+[32mchunk-L2EQSOPB.js[39m                                                                     [2m | [22m[2m-[22m                                                                                  [2m | [22m[36m186.03 kB[39m[2m | [22m
+[32mchunk-6QLAZBBA.js[39m                                                                     [2m | [22m[2m-[22m                                                                                  [2m | [22m[36m172.92 kB[39m[2m | [22m
+[32mchunk-I7L3F4ZO.js[39m                                                                     [2m | [22m[2m-[22m                                                                                  [2m | [22m [36m84.29 kB[39m[2m | [22m
+[32mstyles.css[39m                                                                            [2m | [22m[2mstyles[22m                                                                             [2m | [22m [36m78.93 kB[39m[2m | [22m
+[32mjasmine-cleanup-1.js[39m                                                                  [2m | [22m[2mjasmine-cleanup-1[22m                                                                  [2m | [22m [36m71.41 kB[39m[2m | [22m
+[32mchunk-555ASJKI.js[39m                                                                     [2m | [22m[2m-[22m                                                                                  [2m | [22m [36m44.15 kB[39m[2m | [22m
+[32mchunk-SZQMWZK6.js[39m                                                                     [2m | [22m[2m-[22m                                                                                  [2m | [22m [36m40.45 kB[39m[2m | [22m
+[32mtest_main.js[39m                                                                          [2m | [22m[2mtest_main[22m                                                                          [2m | [22m [36m22.16 kB[39m[2m | [22m
+[32mspec-app-features-admin-components-staff-management-staff-management.component.spec.js[39m[2m | [22m[2mspec-app-features-admin-components-staff-management-staff-management.component.spec[22m[2m | [22m [36m19.77 kB[39m[2m | [22m
+[32mspec-app-features-auth-components-login-login.component.spec.js[39m                       [2m | [22m[2mspec-app-features-auth-components-login-login.component.spec[22m                       [2m | [22m [36m18.28 kB[39m[2m | [22m
+[32mspec-app-features-auth-components-register-register.component.spec.js[39m                 [2m | [22m[2mspec-app-features-auth-components-register-register.component.spec[22m                 [2m | [22m [36m17.40 kB[39m[2m | [22m
+[32mspec-app-features-policies-components-policy-catalog-policy-catalog.component.spec.js[39m [2m | [22m[2mspec-app-features-policies-components-policy-catalog-policy-catalog.component.spec[22m [2m | [22m [36m11.47 kB[39m[2m | [22m
+[32mchunk-Z42BH4FK.js[39m                                                                     [2m | [22m[2m-[22m                                                                                  [2m | [22m [36m10.97 kB[39m[2m | [22m
+[32mspec-app-features-applications-services-policy-application.service.spec.js[39m            [2m | [22m[2mspec-app-features-applications-services-policy-application.service.spec[22m            [2m | [22m  [36m7.44 kB[39m[2m | [22m
+[32mspec-app-features-auth-services-auth.service.spec.js[39m                                  [2m | [22m[2mspec-app-features-auth-services-auth.service.spec[22m                                  [2m | [22m  [36m6.60 kB[39m[2m | [22m
+[32mspec-app-core-guards-auth.guard.spec.js[39m                                               [2m | [22m[2mspec-app-core-guards-auth.guard.spec[22m                                               [2m | [22m  [36m6.40 kB[39m[2m | [22m
+[32mspec-app-features-claims-services-claim.service.spec.js[39m                               [2m | [22m[2mspec-app-features-claims-services-claim.service.spec[22m                               [2m | [22m  [36m6.36 kB[39m[2m | [22m
+[32mspec-app-features-policies-services-policy.service.spec.js[39m                            [2m | [22m[2mspec-app-features-policies-services-policy.service.spec[22m                            [2m | [22m  [36m4.63 kB[39m[2m | [22m
+[32mchunk-7EPLTJTZ.js[39m                                                                     [2m | [22m[2m-[22m                                                                                  [2m | [22m  [36m2.00 kB[39m[2m | [22m
+[32mspec-app-core-interceptors-auth.interceptor.spec.js[39m                                   [2m | [22m[2mspec-app-core-interceptors-auth.interceptor.spec[22m                                   [2m | [22m  [36m1.90 kB[39m[2m | [22m
+[32mjasmine-cleanup-0.js[39m                                                                  [2m | [22m[2mjasmine-cleanup-0[22m                                                                  [2m | [22m[36m519 bytes[39m[2m | [22m
+[32mchunk-TH63ZGHQ.js[39m                                                                     [2m | [22m[2m-[22m                                                                                  [2m | [22m[36m382 bytes[39m[2m | [22m
+
+[1m [22m                                                                                     [2m | [22m[1mInitial total[22m                                                                      [2m | [22m  [1m4.26 MB[22m
+
+Application bundle generation complete. [2.535 seconds] - 2026-03-18T07:37:46.077Z
+
+[32m18 03 2026 13:07:46.326:INFO [karma-server]: [39mKarma v6.4.4 server started at http://localhost:9876/
+[32m18 03 2026 13:07:46.328:INFO [launcher]: [39mLaunching browsers ChromeHeadless with concurrency unlimited
+[32m18 03 2026 13:07:46.346:INFO [launcher]: [39mStarting browser ChromeHeadless
+[32m18 03 2026 13:07:47.494:INFO [Chrome Headless 145.0.0.0 (Windows 10)]: [39mConnected on socket PEdFRX_Bj80TnawjAAAB with id 38817063
+Chrome Headless 145.0.0.0 (Windows 10): Executed 0 of 83[32m SUCCESS[39m (0 secs / 0 secs)
+[1A[2KLOG: [36m'Claim detail raw response:', '{
+  "success": false,
+  "message": "Claim not found"
+}'[39m
+Chrome Headless 145.0.0.0 (Windows 10): Executed 0 of 83[32m SUCCESS[39m (0 secs / 0 secs)
+LOG: 'Claim detail raw response:', '{
+  "success": false,
+  "message": "Claim not found"
+}'
+[1A[2KLOG: [36m'Claim detail raw response:', '{
+  "success": true,
+  "data": {
+    "claimId": 1,
+    "rejection_reason": "Test Reason"
+  }
+}'[39m
+Chrome Headless 145.0.0.0 (Windows 10): Executed 0 of 83[32m SUCCESS[39m (0 secs / 0 secs)
+LOG: 'Claim detail raw response:', '{
+  "success": true,
+  "data": {
+    "claimId": 1,
+    "rejection_reason": "Test Reason"
+  }
+}'
+[1A[2KLOG: [36m'Claim fields:', Object{rejectionReason: undefined, reason: undefined, rejection_reason: 'Test Reason'}[39m
+Chrome Headless 145.0.0.0 (Windows 10): Executed 0 of 83[32m SUCCESS[39m (0 secs / 0 secs)
+LOG: 'Claim fields:', Object{rejectionReason: undefined, reason: undefined, rejection_reason: 'Test Reason'}
+[1A[2KLOG: [36m'After normalisation:', 'Test Reason'[39m
+Chrome Headless 145.0.0.0 (Windows 10): Executed 0 of 83[32m SUCCESS[39m (0 secs / 0 secs)
+LOG: 'After normalisation:', 'Test Reason'
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 1 of 83[32m SUCCESS[39m (0 secs / 0.013 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 2 of 83[32m SUCCESS[39m (0 secs / 0.017 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 3 of 83[32m SUCCESS[39m (0 secs / 0.019 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 4 of 83[32m SUCCESS[39m (0 secs / 0.021 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 5 of 83[32m SUCCESS[39m (0 secs / 0.023 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 6 of 83[32m SUCCESS[39m (0 secs / 0.024 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 7 of 83[32m SUCCESS[39m (0 secs / 0.025 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 8 of 83[32m SUCCESS[39m (0 secs / 0.026 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 9 of 83[32m SUCCESS[39m (0 secs / 0.028 secs)
+[1A[2K[31mChrome Headless 145.0.0.0 (Windows 10) ClaimService fileClaim should handle fileClaim error FAILED[39m
+	Expected 'Server Error' to be 'Failed to file claim'.
+	    at <Jasmine>
+	    at Object.error (src/app/features/claims/services/claim.service.spec.ts:78:53)
+	    at ConsumerObserver.error (node_modules/rxjs/dist/esm/internal/Subscriber.js:102:33)
+	    at SafeSubscriber._error (node_modules/rxjs/dist/esm/internal/Subscriber.js:64:30)
+	    at SafeSubscriber.error (node_modules/rxjs/dist/esm/internal/Subscriber.js:40:18)
+Chrome Headless 145.0.0.0 (Windows 10): Executed 10 of 83[31m (1 FAILED)[39m (0 secs / 0.03 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 11 of 83[31m (1 FAILED)[39m (0 secs / 0.032 secs)
+[1A[2K[31mChrome Headless 145.0.0.0 (Windows 10) ClaimService getById should throw error on unsuccessful getById response FAILED[39m
+	Expected 'Claim not found' to be 'Failed to load claim'.
+	    at <Jasmine>
+	    at Object.error (src/app/features/claims/services/claim.service.spec.ts:125:53)
+	    at ConsumerObserver.error (node_modules/rxjs/dist/esm/internal/Subscriber.js:102:33)
+	    at SafeSubscriber._error (node_modules/rxjs/dist/esm/internal/Subscriber.js:64:30)
+	    at SafeSubscriber.error (node_modules/rxjs/dist/esm/internal/Subscriber.js:40:18)
+Chrome Headless 145.0.0.0 (Windows 10): Executed 12 of 83[31m (2 FAILED)[39m (0 secs / 0.033 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 13 of 83[31m (2 FAILED)[39m (0 secs / 0.034 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 14 of 83[31m (2 FAILED)[39m (0 secs / 0.035 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 15 of 83[31m (2 FAILED)[39m (0 secs / 0.037 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 16 of 83[31m (2 FAILED)[39m (0 secs / 0.038 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 17 of 83[31m (2 FAILED)[39m (0 secs / 0.039 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 18 of 83[31m (2 FAILED)[39m (0 secs / 0.04 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 19 of 83[31m (2 FAILED)[39m (0 secs / 0.041 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 20 of 83[31m (2 FAILED)[39m (0 secs / 0.041 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 21 of 83[31m (2 FAILED)[39m (0 secs / 0.041 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 22 of 83[31m (2 FAILED)[39m (0 secs / 0.042 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 23 of 83[31m (2 FAILED)[39m (0 secs / 0.043 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 24 of 83[31m (2 FAILED)[39m (0 secs / 0.044 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 25 of 83[31m (2 FAILED)[39m (0 secs / 0.089 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 26 of 83[31m (2 FAILED)[39m (0 secs / 0.094 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 27 of 83[31m (2 FAILED)[39m (0 secs / 0.107 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 28 of 83[31m (2 FAILED)[39m (0 secs / 0.11 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 29 of 83[31m (2 FAILED)[39m (0 secs / 0.114 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 30 of 83[31m (2 FAILED)[39m (0 secs / 0.118 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 31 of 83[31m (2 FAILED)[39m (0 secs / 0.122 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 32 of 83[31m (2 FAILED)[39m (0 secs / 0.125 secs)
+[1A[2K[31mChrome Headless 145.0.0.0 (Windows 10) PolicyApplicationService create should handle creation error FAILED[39m
+	Expected 'Bad Request' to be 'Failed to create application'.
+	    at <Jasmine>
+	    at Object.error (src/app/features/applications/services/policy-application.service.spec.ts:81:51)
+	    at ConsumerObserver.error (node_modules/rxjs/dist/esm/internal/Subscriber.js:102:33)
+	    at SafeSubscriber._error (node_modules/rxjs/dist/esm/internal/Subscriber.js:64:30)
+	    at SafeSubscriber.error (node_modules/rxjs/dist/esm/internal/Subscriber.js:40:18)
+Chrome Headless 145.0.0.0 (Windows 10): Executed 33 of 83[31m (3 FAILED)[39m (0 secs / 0.127 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 34 of 83[31m (3 FAILED)[39m (0 secs / 0.128 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 35 of 83[31m (3 FAILED)[39m (0 secs / 0.128 secs)
+[1A[2K[31mChrome Headless 145.0.0.0 (Windows 10) PolicyApplicationService getById should handle inner success false error FAILED[39m
+	Expected 'Policy App not found' to be 'Failed to load application'.
+	    at <Jasmine>
+	    at Object.error (src/app/features/applications/services/policy-application.service.spec.ts:125:52)
+	    at ConsumerObserver.error (node_modules/rxjs/dist/esm/internal/Subscriber.js:102:33)
+	    at SafeSubscriber._error (node_modules/rxjs/dist/esm/internal/Subscriber.js:64:30)
+	    at SafeSubscriber.error (node_modules/rxjs/dist/esm/internal/Subscriber.js:40:18)
+Chrome Headless 145.0.0.0 (Windows 10): Executed 36 of 83[31m (4 FAILED)[39m (0 secs / 0.129 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 37 of 83[31m (4 FAILED)[39m (0 secs / 0.13 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 38 of 83[31m (4 FAILED)[39m (0 secs / 0.131 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 39 of 83[31m (4 FAILED)[39m (0 secs / 0.132 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 40 of 83[31m (4 FAILED)[39m (0 secs / 0.133 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 41 of 83[31m (4 FAILED)[39m (0 secs / 0.134 secs)
+[1A[2K[31mChrome Headless 145.0.0.0 (Windows 10) LoginComponent should show validation errors if form is submitted empty FAILED[39m
+	TypeError: Cannot read properties of undefined (reading 'pipe')
+	    at new _GoogleSigninButtonDirective (node_modules/@abacritt/angularx-social-login/fesm2022/abacritt-angularx-social-login.mjs:1004:37)
+	    at NodeInjectorFactory._GoogleSigninButtonDirective_Factory [as factory] (ng:///_GoogleSigninButtonDirective/╔╡fac.js:4:10)
+	    at getNodeInjectable (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:1044:38)
+	    at instantiateAllDirectives (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:5239:23)
+	    at createDirectivesInstances (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:5098:3)
+	    at ╔╡╔╡elementStart (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:14073:5)
+	    at ╔╡╔╡element (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:14106:3)
+	    at LoginComponent2_Template (ng:///LoginComponent2.js:228:9)
+	    at executeTemplate (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:5090:5)
+	    at renderView (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:5489:7)
+Chrome Headless 145.0.0.0 (Windows 10): Executed 42 of 83[31m (5 FAILED)[39m (0 secs / 0.169 secs)
+[1A[2K[31mChrome Headless 145.0.0.0 (Windows 10) LoginComponent should initialize form with empty fields and validators FAILED[39m
+	TypeError: Cannot read properties of undefined (reading 'pipe')
+	    at new _GoogleSigninButtonDirective (node_modules/@abacritt/angularx-social-login/fesm2022/abacritt-angularx-social-login.mjs:1004:37)
+	    at NodeInjectorFactory._GoogleSigninButtonDirective_Factory [as factory] (ng:///_GoogleSigninButtonDirective/╔╡fac.js:4:10)
+	    at getNodeInjectable (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:1044:38)
+	    at instantiateAllDirectives (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:5239:23)
+	    at createDirectivesInstances (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:5098:3)
+	    at ╔╡╔╡elementStart (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:14073:5)
+	    at ╔╡╔╡element (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:14106:3)
+	    at LoginComponent2_Template (ng:///LoginComponent2.js:228:9)
+	    at executeTemplate (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:5090:5)
+	    at renderView (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:5489:7)
+Chrome Headless 145.0.0.0 (Windows 10): Executed 43 of 83[31m (6 FAILED)[39m (0 secs / 0.174 secs)
+[1A[2K[31mChrome Headless 145.0.0.0 (Windows 10) LoginComponent should create FAILED[39m
+	TypeError: Cannot read properties of undefined (reading 'pipe')
+	    at new _GoogleSigninButtonDirective (node_modules/@abacritt/angularx-social-login/fesm2022/abacritt-angularx-social-login.mjs:1004:37)
+	    at NodeInjectorFactory._GoogleSigninButtonDirective_Factory [as factory] (ng:///_GoogleSigninButtonDirective/╔╡fac.js:4:10)
+	    at getNodeInjectable (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:1044:38)
+	    at instantiateAllDirectives (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:5239:23)
+	    at createDirectivesInstances (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:5098:3)
+	    at ╔╡╔╡elementStart (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:14073:5)
+	    at ╔╡╔╡element (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:14106:3)
+	    at LoginComponent2_Template (ng:///LoginComponent2.js:228:9)
+	    at executeTemplate (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:5090:5)
+	    at renderView (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:5489:7)
+Chrome Headless 145.0.0.0 (Windows 10): Executed 44 of 83[31m (7 FAILED)[39m (0 secs / 0.178 secs)
+[1A[2K[31mChrome Headless 145.0.0.0 (Windows 10) LoginComponent should navigate to admin dashboard for ADMIN role FAILED[39m
+	TypeError: Cannot read properties of undefined (reading 'pipe')
+	    at new _GoogleSigninButtonDirective (node_modules/@abacritt/angularx-social-login/fesm2022/abacritt-angularx-social-login.mjs:1004:37)
+	    at NodeInjectorFactory._GoogleSigninButtonDirective_Factory [as factory] (ng:///_GoogleSigninButtonDirective/╔╡fac.js:4:10)
+	    at getNodeInjectable (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:1044:38)
+	    at instantiateAllDirectives (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:5239:23)
+	    at createDirectivesInstances (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:5098:3)
+	    at ╔╡╔╡elementStart (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:14073:5)
+	    at ╔╡╔╡element (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:14106:3)
+	    at LoginComponent2_Template (ng:///LoginComponent2.js:228:9)
+	    at executeTemplate (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:5090:5)
+	    at renderView (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:5489:7)
+Chrome Headless 145.0.0.0 (Windows 10): Executed 45 of 83[31m (8 FAILED)[39m (0 secs / 0.182 secs)
+[1A[2K[31mChrome Headless 145.0.0.0 (Windows 10) LoginComponent should handle login error correctly FAILED[39m
+	TypeError: Cannot read properties of undefined (reading 'pipe')
+	    at new _GoogleSigninButtonDirective (node_modules/@abacritt/angularx-social-login/fesm2022/abacritt-angularx-social-login.mjs:1004:37)
+	    at NodeInjectorFactory._GoogleSigninButtonDirective_Factory [as factory] (ng:///_GoogleSigninButtonDirective/╔╡fac.js:4:10)
+	    at getNodeInjectable (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:1044:38)
+	    at instantiateAllDirectives (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:5239:23)
+	    at createDirectivesInstances (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:5098:3)
+	    at ╔╡╔╡elementStart (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:14073:5)
+	    at ╔╡╔╡element (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:14106:3)
+	    at LoginComponent2_Template (ng:///LoginComponent2.js:228:9)
+	    at executeTemplate (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:5090:5)
+	    at renderView (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:5489:7)
+Chrome Headless 145.0.0.0 (Windows 10): Executed 46 of 83[31m (9 FAILED)[39m (0 secs / 0.187 secs)
+[1A[2K[31mChrome Headless 145.0.0.0 (Windows 10) LoginComponent should call authService.login when form is valid and submitted FAILED[39m
+	TypeError: Cannot read properties of undefined (reading 'pipe')
+	    at new _GoogleSigninButtonDirective (node_modules/@abacritt/angularx-social-login/fesm2022/abacritt-angularx-social-login.mjs:1004:37)
+	    at NodeInjectorFactory._GoogleSigninButtonDirective_Factory [as factory] (ng:///_GoogleSigninButtonDirective/╔╡fac.js:4:10)
+	    at getNodeInjectable (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:1044:38)
+	    at instantiateAllDirectives (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:5239:23)
+	    at createDirectivesInstances (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:5098:3)
+	    at ╔╡╔╡elementStart (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:14073:5)
+	    at ╔╡╔╡element (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:14106:3)
+	    at LoginComponent2_Template (ng:///LoginComponent2.js:228:9)
+	    at executeTemplate (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:5090:5)
+	    at renderView (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:5489:7)
+Chrome Headless 145.0.0.0 (Windows 10): Executed 47 of 83[31m (10 FAILED)[39m (0 secs / 0.19 secs)
+[1A[2K[31mChrome Headless 145.0.0.0 (Windows 10) LoginComponent should navigate to underwriter dashboard for UNDERWRITER role FAILED[39m
+	TypeError: Cannot read properties of undefined (reading 'pipe')
+	    at new _GoogleSigninButtonDirective (node_modules/@abacritt/angularx-social-login/fesm2022/abacritt-angularx-social-login.mjs:1004:37)
+	    at NodeInjectorFactory._GoogleSigninButtonDirective_Factory [as factory] (ng:///_GoogleSigninButtonDirective/╔╡fac.js:4:10)
+	    at getNodeInjectable (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:1044:38)
+	    at instantiateAllDirectives (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:5239:23)
+	    at createDirectivesInstances (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:5098:3)
+	    at ╔╡╔╡elementStart (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:14073:5)
+	    at ╔╡╔╡element (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:14106:3)
+	    at LoginComponent2_Template (ng:///LoginComponent2.js:228:9)
+	    at executeTemplate (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:5090:5)
+	    at renderView (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:5489:7)
+Chrome Headless 145.0.0.0 (Windows 10): Executed 48 of 83[31m (11 FAILED)[39m (0 secs / 0.194 secs)
+[1A[2K[31mChrome Headless 145.0.0.0 (Windows 10) LoginComponent should automatically login with google when authState emits valid user FAILED[39m
+	TypeError: Cannot read properties of undefined (reading 'pipe')
+	    at new _GoogleSigninButtonDirective (node_modules/@abacritt/angularx-social-login/fesm2022/abacritt-angularx-social-login.mjs:1004:37)
+	    at NodeInjectorFactory._GoogleSigninButtonDirective_Factory [as factory] (ng:///_GoogleSigninButtonDirective/╔╡fac.js:4:10)
+	    at getNodeInjectable (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:1044:38)
+	    at instantiateAllDirectives (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:5239:23)
+	    at createDirectivesInstances (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:5098:3)
+	    at ╔╡╔╡elementStart (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:14073:5)
+	    at ╔╡╔╡element (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:14106:3)
+	    at LoginComponent2_Template (ng:///LoginComponent2.js:228:9)
+	    at executeTemplate (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:5090:5)
+	    at renderView (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:5489:7)
+Chrome Headless 145.0.0.0 (Windows 10): Executed 49 of 83[31m (12 FAILED)[39m (0 secs / 0.198 secs)
+[1A[2K[31mChrome Headless 145.0.0.0 (Windows 10) LoginComponent should navigate to claims dashboard for CLAIMS_OFFICER role FAILED[39m
+	TypeError: Cannot read properties of undefined (reading 'pipe')
+	    at new _GoogleSigninButtonDirective (node_modules/@abacritt/angularx-social-login/fesm2022/abacritt-angularx-social-login.mjs:1004:37)
+	    at NodeInjectorFactory._GoogleSigninButtonDirective_Factory [as factory] (ng:///_GoogleSigninButtonDirective/╔╡fac.js:4:10)
+	    at getNodeInjectable (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:1044:38)
+	    at instantiateAllDirectives (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:5239:23)
+	    at createDirectivesInstances (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:5098:3)
+	    at ╔╡╔╡elementStart (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:14073:5)
+	    at ╔╡╔╡element (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:14106:3)
+	    at LoginComponent2_Template (ng:///LoginComponent2.js:228:9)
+	    at executeTemplate (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:5090:5)
+	    at renderView (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:5489:7)
+Chrome Headless 145.0.0.0 (Windows 10): Executed 50 of 83[31m (13 FAILED)[39m (0 secs / 0.202 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 51 of 83[31m (13 FAILED)[39m (0 secs / 0.222 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 52 of 83[31m (13 FAILED)[39m (0 secs / 0.224 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 53 of 83[31m (13 FAILED)[39m (0 secs / 0.227 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 54 of 83[31m (13 FAILED)[39m (0 secs / 0.229 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 55 of 83[31m (13 FAILED)[39m (0 secs / 0.23 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 56 of 83[31m (13 FAILED)[39m (0 secs / 0.232 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 57 of 83[31m (13 FAILED)[39m (0 secs / 0.234 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 58 of 83[31m (13 FAILED)[39m (0 secs / 0.236 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 59 of 83[31m (13 FAILED)[39m (0 secs / 0.237 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 60 of 83[31m (13 FAILED)[39m (0 secs / 0.239 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 61 of 83[31m (13 FAILED)[39m (0 secs / 0.24 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 62 of 83[31m (13 FAILED)[39m (0 secs / 0.241 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 63 of 83[31m (13 FAILED)[39m (0 secs / 0.242 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 64 of 83[31m (13 FAILED)[39m (0 secs / 0.243 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 65 of 83[31m (13 FAILED)[39m (0 secs / 0.245 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 66 of 83[31m (13 FAILED)[39m (0 secs / 0.246 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 67 of 83[31m (13 FAILED)[39m (0 secs / 0.247 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 68 of 83[31m (13 FAILED)[39m (0 secs / 0.248 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 69 of 83[31m (13 FAILED)[39m (0 secs / 0.249 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 70 of 83[31m (13 FAILED)[39m (0 secs / 0.284 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 71 of 83[31m (13 FAILED)[39m (0 secs / 0.315 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 72 of 83[31m (13 FAILED)[39m (0 secs / 0.321 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 73 of 83[31m (13 FAILED)[39m (0 secs / 0.326 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 74 of 83[31m (13 FAILED)[39m (0 secs / 0.331 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 75 of 83[31m (13 FAILED)[39m (0 secs / 0.335 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 76 of 83[31m (13 FAILED)[39m (0 secs / 0.338 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 77 of 83[31m (13 FAILED)[39m (0 secs / 0.342 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 78 of 83[31m (13 FAILED)[39m (0 secs / 0.347 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 79 of 83[31m (13 FAILED)[39m (0 secs / 0.353 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 80 of 83[31m (13 FAILED)[39m (0 secs / 0.357 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 81 of 83[31m (13 FAILED)[39m (0 secs / 0.366 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 82 of 83[31m (13 FAILED)[39m (0 secs / 0.368 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 83 of 83[31m (13 FAILED)[39m (0 secs / 0.369 secs)
+[1A[2KChrome Headless 145.0.0.0 (Windows 10): Executed 83 of 83[31m (13 FAILED)[39m (0.421 secs / 0.369 secs)
+[31mTOTAL: 13 FAILED, 70 SUCCESS[39m
+

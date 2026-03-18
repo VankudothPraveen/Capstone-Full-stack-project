@@ -1,0 +1,109 @@
+<div class="space-y-6 animate-fade-in">
+  <div class="flex items-center justify-between">
+    <div>
+      <h1 class="page-header">User Management</h1>
+      <p class="page-subheader">Manage all registered users</p>
+    </div>
+    <button (click)="openCreateModal()" class="btn-primary flex items-center gap-2">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+      Add User Profile
+    </button>
+  </div>
+  <div class="card overflow-hidden">
+
+    @if (isLoading()) {
+    <div class="p-8 text-center text-medium-gray text-sm">
+      <span class="inline-block animate-spin mr-2">⏳</span> Loading users...
+    </div>
+    } @else if (users().length === 0) {
+    <div class="p-8 text-center text-medium-gray">No users found in the system.</div>
+    } @else {
+    <div class="overflow-x-auto">
+      <table class="table w-full">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Role</th>
+            <th>Since</th>
+            <th class="text-right">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (user of users(); track user.userId) {
+          <tr class="hover:bg-gray-50/50 transition-colors">
+            <td class="font-mono text-xs">USR-{{ user.userId }}</td>
+            <td class="font-medium text-dark-gray">{{ user.name }}</td>
+            <td class="text-medium-gray text-sm">{{ user.email }}</td>
+            <td class="text-medium-gray">{{ user.phone || 'N/A' }}</td>
+            <td>
+              <span class="badge"
+                [class]="(user.roleName === 'ROLE_ADMIN' || user.role === 'ROLE_ADMIN') ? 'badge-maroon' : 
+                         (user.roleName === 'ROLE_UNDERWRITER' || user.role === 'ROLE_UNDERWRITER') ? 'badge-gold' :
+                         (user.roleName === 'ROLE_CLAIMS_OFFICER' || user.role === 'ROLE_CLAIMS_OFFICER') ? 'badge-info' : 'badge-success'">
+                {{ (user.roleName || user.role || '').replace('ROLE_', '') }}
+              </span>
+            </td>
+            <td class="text-medium-gray">{{ user.createdAt ? (user.createdAt | date:'dd MMM yyyy') : 'Unknown' }}</td>
+            <td class="text-right">
+              <button (click)="deleteUser(user.userId, $event)" [disabled]="user.userId === currentUserId"
+                [class.opacity-50]="user.userId === currentUserId"
+                [class.cursor-not-allowed]="user.userId === currentUserId"
+                class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-red-50 text-red-600 hover:bg-red-100 transition-colors">
+                {{ user.userId === currentUserId ? 'Current' : 'Remove' }}
+              </button>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    }
+  </div>
+</div>
+
+<!-- Create User Modal -->
+@if (showCreateModal()) {
+<div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
+  <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8">
+    <h3 class="text-lg font-bold text-dark-gray mb-1">Create User Profile</h3>
+    <p class="text-sm text-medium-gray mb-6">Add a new user account to the system.</p>
+
+    <div class="space-y-4">
+      <div>
+        <label class="form-label">Full Name *</label>
+        <input type="text" class="form-input mt-1" placeholder="e.g. Priya Sharma" [(ngModel)]="newUser.name">
+      </div>
+      <div>
+        <label class="form-label">Email Address *</label>
+        <input type="email" class="form-input mt-1" placeholder="user@example.com" [(ngModel)]="newUser.email">
+      </div>
+      <div>
+        <label class="form-label">Phone Number</label>
+        <input type="tel" class="form-input mt-1" placeholder="9876543210" [(ngModel)]="newUser.phone">
+      </div>
+      <div>
+        <label class="form-label">Temporary Password *</label>
+        <input type="password" class="form-input mt-1" placeholder="Min 8 characters" [(ngModel)]="newUser.password">
+      </div>
+      <div>
+        <label class="form-label">Role</label>
+        <select class="form-select mt-1" [(ngModel)]="selectedRole">
+          @for (r of roleOptions; track r) {
+            <option [value]="r">{{ r }}</option>
+          }
+        </select>
+      </div>
+    </div>
+
+    <div class="flex gap-3 mt-8">
+      <button (click)="showCreateModal.set(false)" class="btn-secondary flex-1">Cancel</button>
+      <button (click)="createUser()" class="btn-primary flex-1" [disabled]="creating()">
+        @if (creating()) { Creating... } @else { Create User }
+      </button>
+    </div>
+  </div>
+</div>
+}

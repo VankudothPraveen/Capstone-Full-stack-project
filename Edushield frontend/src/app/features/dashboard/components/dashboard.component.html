@@ -1,0 +1,72 @@
+<div class="space-y-6">
+  <!-- Header -->
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+    <div>
+      <h1 class="page-header">Welcome back, {{ auth.currentUser()?.name?.split(' ')[0] }}</h1>
+      <p class="page-subheader">Insurance portfolio overview as of {{ today | date:'MMMM d, yyyy' }}</p>
+    </div>
+    @if (auth.isUser()) {
+      <a routerLink="/applications/apply" class="btn-primary self-start">Apply for Policy</a>
+    }
+  </div>
+
+  <!-- Metric Cards -->
+  <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+    @for (card of metricCards(); track card.label) {
+    <div class="metric-card">
+      <p class="text-xs text-medium-gray font-semibold uppercase tracking-wider mb-2">{{ card.label }}</p>
+      <p class="text-2xl font-bold text-dark-gray">{{ card.value }}</p>
+      <span class="badge mt-2 inline-block" [class]="card.badgeClass">{{ card.trend }}</span>
+    </div>
+    }
+  </div>
+
+  <!-- Recent Applications + Quick Actions -->
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+    <!-- Recent Applications -->
+    <div class="card p-6 lg:col-span-2">
+      <div class="flex items-center justify-between mb-5">
+        <h3 class="font-bold text-dark-gray">Recent Applications</h3>
+        <a routerLink="/applications/my-applications" class="text-primary-maroon text-sm font-medium hover:underline">View all</a>
+      </div>
+      <div class="space-y-1">
+        @for (app of recentApplications(); track app.applicationId) {
+        <div class="flex items-center justify-between py-3 border-b border-gray-100 last:border-0">
+          <div>
+            <p class="text-sm font-semibold text-dark-gray">{{ app.policyName }}</p>
+            <p class="text-xs text-medium-gray">{{ app.childName }} &middot; {{ app.applicationDate | date:'MMM d, yyyy' }}</p>
+          </div>
+          <div class="flex flex-col items-end gap-1">
+            <span class="badge" [class]="getStatusBadge(app.status)">{{ app.status }}</span>
+            <span class="text-[10px] font-bold text-dark-gray">Premium: ₹{{ app.calculatedPremium || app.basePremium || 'N/A' }}</span>
+          </div>
+        </div>
+        } @empty {
+        <p class="text-center text-medium-gray py-8 text-sm">No applications yet</p>
+        }
+      </div>
+    </div>
+
+    <!-- Quick Actions -->
+    @if (auth.isUser()) {
+    <div class="card p-6">
+      <h3 class="font-bold text-dark-gray mb-4">Quick Actions</h3>
+      <div class="space-y-2">
+        @for (action of quickActions; track action.label) {
+        <a [routerLink]="action.route" class="flex items-center justify-between px-3 py-2.5 rounded-lg border border-gray-200 hover:border-primary-maroon hover:bg-primary-maroon/5 transition-colors duration-200 group">
+          <div class="flex-1 min-w-0">
+            <p class="text-sm font-semibold text-dark-gray group-hover:text-primary-maroon transition-colors truncate">{{ action.label }}</p>
+            <p class="text-xs text-medium-gray truncate">{{ action.desc }}</p>
+          </div>
+          <svg class="w-4 h-4 text-gray-300 group-hover:text-primary-maroon transition-colors flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+        }
+      </div>
+    </div>
+    }
+
+  </div>
+</div>

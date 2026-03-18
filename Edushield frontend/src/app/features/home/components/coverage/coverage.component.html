@@ -1,0 +1,125 @@
+<!-- Coverage / Plans Section -->
+<section id="coverage" class="py-20 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Header -->
+    <div class="text-center mb-14">
+      <p class="text-primary-maroon text-sm font-semibold uppercase tracking-widest mb-3">
+        Education Insurance Plans
+      </p>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-dark-gray mb-4">
+        Choose the Right Plan for<br class="hidden sm:block" />
+        <span class="text-primary-maroon">Your Child's Future</span>
+      </h2>
+      <p class="text-medium-gray text-lg max-w-2xl mx-auto">
+        All plans come with guaranteed maturity benefits, waiver of premium, and tax advantages under Section 80C.
+      </p>
+    </div>
+
+    <!-- Loading State -->
+    @if (loading) {
+    <div class="flex justify-center items-center py-20">
+      <div class="w-8 h-8 border-2 border-primary-maroon/20 border-t-primary-maroon rounded-full animate-spin"></div>
+    </div>
+    }
+
+    <!-- Plans Grid -->
+    @if (!loading) {
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      @for (plan of policies; track plan.policyId; let i = $index) {
+      <div class="relative rounded-xl overflow-hidden transition-shadow duration-200 hover:shadow-maroon"
+        [class.border-2]="i === recommendedIndex" [class.border-primary-maroon]="i === recommendedIndex"
+        [class.bg-primary-maroon]="i === recommendedIndex" [class.text-white]="i === recommendedIndex"
+        [class.bg-white]="i !== recommendedIndex" [class.shadow-card]="i !== recommendedIndex">
+        <!-- Recommended Badge -->
+        @if (i === recommendedIndex) {
+        <div class="absolute top-0 right-0 bg-accent-gold text-[#5e0c32] text-xs font-bold px-3 py-1 rounded-bl-lg">
+          RECOMMENDED
+        </div>
+        }
+
+        <div class="p-6">
+          <!-- Plan Name & Description -->
+          <h3 class="text-xl font-bold mb-1" [class.text-white]="i === recommendedIndex"
+            [class.text-dark-gray]="i !== recommendedIndex">
+            {{ plan.policyName }}
+          </h3>
+          <p class="text-sm mb-5 leading-relaxed" [class.text-white/75]="i === recommendedIndex"
+            [class.text-medium-gray]="i !== recommendedIndex">
+            {{ plan.description }}
+          </p>
+
+          <!-- Premium -->
+          <div class="mb-5">
+            <span class="text-3xl font-extrabold" [class.text-accent-gold]="i === recommendedIndex"
+              [class.text-primary-maroon]="i !== recommendedIndex">
+              ₹{{ plan.basePremium.toLocaleString('en-IN') }}
+            </span>
+            <span class="text-sm ml-1" [class.text-white/60]="i === recommendedIndex"
+              [class.text-medium-gray]="i !== recommendedIndex">/month</span>
+          </div>
+
+          <!-- Key Details -->
+          <ul class="space-y-2.5 mb-6">
+            <li class="flex items-start gap-3 text-sm">
+              <span class="w-1 h-1 rounded-full mt-2 flex-shrink-0" [class.bg-accent-gold]="i === recommendedIndex"
+                [class.bg-primary-maroon]="i !== recommendedIndex"></span>
+              <span [class.text-white/85]="i === recommendedIndex" [class.text-dark-gray]="i !== recommendedIndex">
+                Coverage: {{ formatAmount(plan.riskCoverageAmount) }}
+              </span>
+            </li>
+            <li class="flex items-start gap-3 text-sm">
+              <span class="w-1 h-1 rounded-full mt-2 flex-shrink-0" [class.bg-accent-gold]="i === recommendedIndex"
+                [class.bg-primary-maroon]="i !== recommendedIndex"></span>
+              <span [class.text-white/85]="i === recommendedIndex" [class.text-dark-gray]="i !== recommendedIndex">
+                Maturity Benefit: {{ formatAmount(plan.maturityBenefitAmount) }}
+              </span>
+            </li>
+            <li class="flex items-start gap-3 text-sm">
+              <span class="w-1 h-1 rounded-full mt-2 flex-shrink-0" [class.bg-accent-gold]="i === recommendedIndex"
+                [class.bg-primary-maroon]="i !== recommendedIndex"></span>
+              <span [class.text-white/85]="i === recommendedIndex" [class.text-dark-gray]="i !== recommendedIndex">
+                Duration: {{ plan.durationYears }} Years
+              </span>
+            </li>
+            <li class="flex items-start gap-3 text-sm">
+              <span class="w-1 h-1 rounded-full mt-2 flex-shrink-0" [class.bg-accent-gold]="i === recommendedIndex"
+                [class.bg-primary-maroon]="i !== recommendedIndex"></span>
+              <span [class.text-white/85]="i === recommendedIndex" [class.text-dark-gray]="i !== recommendedIndex">
+                Bonus: {{ plan.bonusPercentage }}% + Waiver of Premium
+              </span>
+            </li>
+            <li class="flex items-start gap-3 text-sm">
+              <span class="w-1 h-1 rounded-full mt-2 flex-shrink-0" [class.bg-accent-gold]="i === recommendedIndex"
+                [class.bg-primary-maroon]="i !== recommendedIndex"></span>
+              <span [class.text-white/85]="i === recommendedIndex" [class.text-dark-gray]="i !== recommendedIndex">
+                Child Age: {{ plan.minChildAge }}–{{ plan.maxChildAge }} yrs
+              </span>
+            </li>
+          </ul>
+
+          <!-- CTA Button -->
+          <button (click)="viewDetails(plan.policyId)"
+            class="w-full py-3 rounded-lg font-semibold text-sm transition-colors duration-200"
+            [class.bg-accent-gold]="i === recommendedIndex" [class.text-deep-maroon]="i === recommendedIndex"
+            [class.hover:bg-yellow-400]="i === recommendedIndex" [class.border-2]="i !== recommendedIndex"
+            [class.border-primary-maroon]="i !== recommendedIndex" [class.text-primary-maroon]="i !== recommendedIndex"
+            [class.hover:bg-primary-maroon]="i !== recommendedIndex" [class.hover:text-white]="i !== recommendedIndex">
+            View Plan Details
+          </button>
+        </div>
+      </div>
+      }
+    </div>
+    }
+
+    <!-- Bottom CTA -->
+    <div class="mt-12 text-center">
+      <p class="text-medium-gray mb-4">Not sure which plan is right for you?</p>
+      <button (click)="viewDetails(0)"
+        class="px-8 py-3.5 bg-primary-maroon text-white font-semibold rounded-lg hover:bg-deep-maroon transition-colors duration-200">
+        Get Personalized Recommendation
+      </button>
+    </div>
+  </div>
+</section>

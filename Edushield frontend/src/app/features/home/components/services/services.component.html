@@ -1,0 +1,48 @@
+<!-- Services Section -->
+<section id="services" class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Header -->
+    <div class="text-center mb-14">
+      <p class="text-primary-maroon text-sm font-semibold uppercase tracking-widest mb-3">What We Offer</p>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-dark-gray mb-4">
+        Everything You Need to Protect<br class="hidden sm:block"/>
+        <span class="text-primary-maroon">Your Child's Education</span>
+      </h2>
+      <p class="text-medium-gray text-lg max-w-2xl mx-auto">
+        Comprehensive insurance solutions designed with parents in mind — simple, transparent, and reliable.
+      </p>
+    </div>
+
+    <!-- Service Cards Grid -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      @for (service of services; track service.title) {
+        <div class="bg-white rounded-xl p-6 border border-gray-100 shadow-card hover:shadow-maroon hover:border-primary-maroon/50 transition-all duration-200 cursor-default">
+          <!-- Color accent bar -->
+          <div class="w-10 h-1 rounded-full mb-5" [class]="service.accentBar || 'bg-primary-maroon'"></div>
+
+          <!-- Title -->
+          <h3 class="text-base font-bold text-dark-gray mb-2">
+            {{ service.title }}
+          </h3>
+
+          <!-- Description -->
+          <p class="text-medium-gray text-sm leading-relaxed mb-4">
+            {{ service.description }}
+          </p>
+
+          <!-- Highlights -->
+          <ul class="space-y-1.5">
+            @for (h of service.highlights; track h) {
+              <li class="flex items-start gap-2 text-xs text-dark-gray font-medium">
+                <span class="w-1 h-1 rounded-full bg-primary-maroon mt-1.5 flex-shrink-0"></span>
+                {{ h }}
+              </li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+
+  </div>
+</section>

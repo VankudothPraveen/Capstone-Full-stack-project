@@ -1,0 +1,64 @@
+
+    <div class="space-y-6 animate-fade-in">
+      <a routerLink="/claims/my-claims" class="text-primary-maroon text-sm hover:underline">← Back to Claims</a>
+      @if (claim()) {
+        <div class="bg-maroon-gradient rounded-2xl p-7 text-white">
+          <h1 class="text-2xl font-bold">{{ claim()!.claimType.replace('_', ' ') }} Claim</h1>
+          <p class="text-white/70 text-sm mt-1">{{ claim()!.policyName }} · {{ claim()!.subscriptionNumber }}</p>
+          <div class="flex items-center gap-4 mt-4">
+            <div class="bg-white/20 rounded-xl px-5 py-3">
+              <p class="text-white/60 text-xs">Claim Amount</p>
+              <p class="text-2xl font-bold">₹{{ claim()!.claimAmount.toLocaleString() }}</p>
+            </div>
+            <div class="bg-white/20 rounded-xl px-5 py-3">
+              <p class="text-white/60 text-xs">Status</p>
+              <p class="text-lg font-bold">{{ claim()!.status }}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <div class="card p-6">
+            <h3 class="font-bold text-dark-gray mb-4">Claim Status Tracker</h3>
+            <div class="space-y-0">
+              @for (step of statusSteps(); track step.label; let last = $last) {
+                <div class="flex gap-3">
+                  <div class="flex flex-col items-center">
+                    <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
+                      [class]="step.done ? 'bg-primary-maroon text-white' : 'bg-gray-100 text-gray-400'">
+                      @if (step.done) {
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                      } @else { <span class="text-xs font-bold">{{ step.num }}</span> }
+                    </div>
+                    @if (!last) { <div class="w-0.5 flex-1 my-1" [class]="step.done ? 'bg-primary-maroon' : 'bg-gray-200'"></div> }
+                  </div>
+                  <div class="pb-5">
+                    <p class="text-sm font-semibold" [class]="step.done ? 'text-dark-gray' : 'text-gray-400'">{{ step.label }}</p>
+                    @if (step.date) { <p class="text-xs text-medium-gray">{{ step.date | date:'dd MMM yyyy' }}</p> }
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+
+          <div class="card p-6">
+            <h3 class="font-bold text-dark-gray mb-4">Details</h3>
+            <div class="space-y-3">
+              @for (item of detailItems(); track item.label) {
+                <div class="flex justify-between py-2 border-b border-gray-100 last:border-0">
+                  <span class="text-sm text-medium-gray">{{ item.label }}</span>
+                  <span class="text-sm font-semibold text-dark-gray">{{ item.value }}</span>
+                </div>
+              }
+            </div>
+            @if (claim()!.rejectionReason || claim()!.reason) {
+              <div class="mt-4 bg-red-50 border border-red-200 rounded-lg p-3">
+                <p class="text-xs font-semibold text-red-500 mb-1">Rejection Reason</p>
+                <p class="text-red-700 text-sm">{{ claim()!.rejectionReason || claim()!.reason }}</p>
+              </div>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  

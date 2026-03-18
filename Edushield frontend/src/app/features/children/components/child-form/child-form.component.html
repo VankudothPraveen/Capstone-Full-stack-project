@@ -1,0 +1,99 @@
+<div class="max-w-2xl mx-auto space-y-6 animate-fade-in">
+  <div>
+    <h1 class="page-header">{{ isEdit() ? 'Edit Child' : 'Add Child' }}</h1>
+    <p class="page-subheader">{{ isEdit() ? 'Update child information' : 'Register a new child for insurance coverage'
+      }}</p>
+  </div>
+
+  <div class="card p-8">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-6">
+      <div>
+        <label for="childName" class="form-label">Child's Full Name *</label>
+        <input type="text" id="childName" name="childName" formControlName="childName" class="form-input"
+          placeholder="e.g., Priya Sharma" [class.error]="f['childName'].invalid && f['childName'].touched">
+        @if (f['childName'].invalid && f['childName'].touched) {
+        <p class="form-error">Minimum 2 characters required</p>
+        }
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div>
+          <label for="dateOfBirth" class="form-label">Date of Birth *</label>
+          <input type="date" id="dateOfBirth" name="dateOfBirth" formControlName="dateOfBirth" class="form-input"
+            [max]="maxDob" [min]="minDob" [class.error]="f['dateOfBirth'].invalid && f['dateOfBirth'].touched">
+          @if (f['dateOfBirth'].invalid && f['dateOfBirth'].touched) {
+          <p class="form-error">Valid date between 0-18 years required</p>
+          }
+        </div>
+        <div>
+          <label for="gender" class="form-label">Gender *</label>
+          <select id="gender" name="gender" formControlName="gender" class="form-select"
+            [class.error]="f['gender'].invalid && f['gender'].touched">
+            <option value="">Select Gender</option>
+            <option value="MALE">Male</option>
+            <option value="FEMALE">Female</option>
+            <option value="OTHER">Other</option>
+          </select>
+          @if (f['gender'].invalid && f['gender'].touched) {
+          <p class="form-error">Please select a gender</p>
+          }
+        </div>
+      </div>
+
+      <div>
+        <label for="schoolName" class="form-label">School Name *</label>
+        <input type="text" id="schoolName" name="schoolName" formControlName="schoolName" class="form-input"
+          placeholder="e.g., Delhi Public School" [class.error]="f['schoolName'].invalid && f['schoolName'].touched">
+        @if (f['schoolName'].invalid && f['schoolName'].touched) {
+        <p class="form-error">School name is required</p>
+        }
+      </div>
+
+      <div>
+        <label for="educationGoal" class="form-label">Education Goal *</label>
+        <select id="educationGoal" name="educationGoal" formControlName="educationGoal" class="form-select"
+          [class.error]="f['educationGoal'].invalid && f['educationGoal'].touched">
+          <option value="">Select Goal</option>
+          <option value="Engineering">Engineering (B.Tech/BE)</option>
+          <option value="Medicine">Medicine / MBBS / BDS</option>
+          <option value="Law">Law (LLB/Integrated)</option>
+          <option value="MBA">MBA / Management / BBA</option>
+          <option value="Architecture">Architecture (B.Arch)</option>
+          <option value="Arts_Design">Arts & Design / Fashion</option>
+          <option value="Science">Pure Sciences / Research</option>
+          <option value="Commerce">Commerce / CA / CS / ACCA</option>
+          <option value="Civil_Services">Civil Services (IAS/IPS/IFS)</option>
+          <option value="Pilot">Pilot / Aviation</option>
+          <option value="Film_Media">Film & Media / Journalism</option>
+          <option value="Agriculture">Agriculture / Food Science</option>
+          <option value="Psychology">Psychology / Counseling</option>
+          <option value="Sports">Sports Management / Athlete</option>
+          <option value="Computer_Science">Computer Science / Data Science / AI</option>
+          <option value="Finance">Finance / Fintech / Banking</option>
+          <option value="Hotel_Management">Hotel & Tourism Management</option>
+          <option value="Other">Other Specialty</option>
+        </select>
+        @if (f['educationGoal'].invalid && f['educationGoal'].touched) {
+        <p class="form-error">Please select an education goal</p>
+        }
+      </div>
+
+      <div class="flex gap-3 pt-2">
+        <button type="submit" class="btn-primary flex-1" [disabled]="loading() || form.invalid">
+          @if (loading()) {
+          <span class="flex items-center justify-center gap-2">
+            <svg class="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+            </svg>
+            Saving...
+          </span>
+          } @else {
+          {{ isEdit() ? 'Update Child' : 'Add Child' }}
+          }
+        </button>
+        <a routerLink="/children/list" class="btn-secondary flex-1 text-center">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>

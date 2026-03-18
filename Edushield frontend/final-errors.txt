@@ -1,0 +1,118 @@
+﻿[33mΓ¥»[39m Building...
+[32mΓ£ö[39m Building...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                       [2m | [22m [1mRaw size[22m
+[32mchunk-2LS3DP57.js[39m  [2m | [22m[2m-[22m                           [2m | [22m[36m877.25 kB[39m[2m | [22m
+[32mchunk-6WTMK45K.js[39m  [2m | [22m[2m-[22m                           [2m | [22m[36m329.49 kB[39m[2m | [22m
+[32mchunk-OB4PL2RM.js[39m  [2m | [22m[2m-[22m                           [2m | [22m[36m166.42 kB[39m[2m | [22m
+[32mstyles.css[39m         [2m | [22m[2mstyles[22m                      [2m | [22m [36m50.06 kB[39m[2m | [22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                        [2m | [22m  [36m7.22 kB[39m[2m | [22m
+[32mchunk-LAFCXBGK.js[39m  [2m | [22m[2m-[22m                           [2m | [22m  [36m5.16 kB[39m[2m | [22m
+[32mchunk-BHCUL4H7.js[39m  [2m | [22m[2m-[22m                           [2m | [22m  [36m3.01 kB[39m[2m | [22m
+[32mchunk-OLYUQEB5.js[39m  [2m | [22m[2m-[22m                           [2m | [22m  [36m1.31 kB[39m[2m | [22m
+
+[1m [22m                  [2m | [22m[1mInitial total[22m               [2m | [22m  [1m1.44 MB[22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                       [2m | [22m [1mRaw size[22m
+[32mchunk-SLACPTCH.js[39m  [2m | [22m[2m-[22m                           [2m | [22m[36m440.60 kB[39m[2m | [22m
+[32mchunk-DOVY75BA.js[39m  [2m | [22m[2m-[22m                           [2m | [22m[36m152.89 kB[39m[2m | [22m
+[32mchunk-JQZL6HZO.js[39m  [2m | [22m[2mapply-component[22m             [2m | [22m [36m35.99 kB[39m[2m | [22m
+[32mchunk-OLRCJS4J.js[39m  [2m | [22m[2mlayout-component[22m            [2m | [22m [36m31.14 kB[39m[2m | [22m
+[32mchunk-XHUZXYKF.js[39m  [2m | [22m[2mdashboard-component[22m         [2m | [22m [36m22.87 kB[39m[2m | [22m
+[32mchunk-P5HMKYZM.js[39m  [2m | [22m[2mlogin-component[22m             [2m | [22m [36m22.71 kB[39m[2m | [22m
+[32mchunk-5XKCEDON.js[39m  [2m | [22m[2mregister-component[22m          [2m | [22m [36m21.94 kB[39m[2m | [22m
+[32mchunk-RWDY47VB.js[39m  [2m | [22m[2mbenefit-calculator-component[22m[2m | [22m [36m21.80 kB[39m[2m | [22m
+[32mchunk-JL54K6LA.js[39m  [2m | [22m[2mpolicy-calculator-component[22m [2m | [22m [36m20.96 kB[39m[2m | [22m
+[32mchunk-SPLIWJKO.js[39m  [2m | [22m[2madmin-dashboard-component[22m   [2m | [22m [36m19.67 kB[39m[2m | [22m
+[32mchunk-JCNVFZ7R.js[39m  [2m | [22m[2mmake-payment-component[22m      [2m | [22m [36m19.42 kB[39m[2m | [22m
+[32mchunk-G4XKOSOG.js[39m  [2m | [22m[2mpolicy-management-component[22m [2m | [22m [36m18.79 kB[39m[2m | [22m
+[32mchunk-KLA3NLP7.js[39m  [2m | [22m[2mchild-form-component[22m        [2m | [22m [36m18.60 kB[39m[2m | [22m
+[32mchunk-GWRTGYCE.js[39m  [2m | [22m[2mfile-claim-component[22m        [2m | [22m [36m17.56 kB[39m[2m | [22m
+[32mchunk-KN3ZFMUH.js[39m  [2m | [22m[2mpolicy-catalog-component[22m    [2m | [22m [36m16.21 kB[39m[2m | [22m
+[2m...and 18 more lazy chunks files. Use "--verbose" to show all the files.[22m
+
+Application bundle generation complete. [5.301 seconds] - 2026-03-01T07:38:56.964Z
+
+node.exe : [1m[33m[33mΓû▓ 
+[43;33m[[43;30mWARNING[43;33m][0m [1mNG8113: 
+RouterLink is not used within the template of 
+UserManagementComponent[0m [1m[35m[plugin 
+angular-compiler][0m
+At C:\Program Files\nodejs\npx.ps1:29 char:3
++   & $NODE_EXE $NPX_CLI_JS $args
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: 
+([1m[33m[    33mΓ...r-compiler][0m:String) [], 
+RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+
+    src/app/admin/user-management/user-management.compo
+nent.ts:8:65:
+[37m      8 Γöé ...ser-management', standalone: true, 
+imports: [[32mRouterLink[37m, DatePipe],
+        Γò╡                                            
+     [32m~~~~~~~~~~[0m
+
+
+[33mΓû▓ [43;33m[[43;30mWARNING[43;33m][0m 
+[1mNG8113: CurrencyPipe is not used within the 
+template of PolicyCatalogComponent[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    src/app/policies/policy-catalog/policy-catalog.comp
+onent.ts:10:24:
+[37m      10 Γöé   imports: [RouterLink, 
+[32mCurrencyPipe[37m, DecimalPipe],
+         Γò╡                         
+[32m~~~~~~~~~~~~[0m
+
+
+[33mΓû▓ [43;33m[[43;30mWARNING[43;33m][0m 
+[1mNG8113: RouterLink is not used within the template 
+of AddressComponent[0m [1m[35m[plugin 
+angular-compiler][0m
+
+    src/app/profile/address/address.component.ts:12:33:
+[37m      12 Γöé   imports: [ReactiveFormsModule, 
+[32mRouterLink[37m, DatePipe],
+         Γò╡                                  
+[32m~~~~~~~~~~[0m
+
+
+[33mΓû▓ [43;33m[[43;30mWARNING[43;33m][0m 
+[1mNG8113: DatePipe is not used within the template 
+of AddressComponent[0m [1m[35m[plugin 
+angular-compiler][0m
+
+    src/app/profile/address/address.component.ts:12:45:
+[37m      12 Γöé   imports: [ReactiveFormsModule, 
+RouterLink, [32mDatePipe[37m],
+         Γò╡                                           
+   [32m~~~~~~~~[0m
+
+
+[33mΓû▓ [43;33m[[43;30mWARNING[43;33m][0m 
+[1mNG8113: RouterLink is not used within the template 
+of ProfileComponent[0m [1m[35m[plugin 
+angular-compiler][0m
+
+    src/app/profile/profile.component.ts:12:33:
+[37m      12 Γöé   imports: [ReactiveFormsModule, 
+[32mRouterLink[37m, DatePipe],
+         Γò╡                                  
+[32m~~~~~~~~~~[0m
+
+
+[33mΓû▓ [43;33m[[43;30mWARNING[43;33m][0m 
+[1mNG8113: SidebarComponent is not used within the 
+template of NavbarComponent[0m [1m[35m[plugin 
+angular-compiler][0m
+
+    src/app/shared/navbar/navbar.component.ts:10:12:
+[37m      10 Γöé   imports: 
+[[32mSidebarComponent[37m, UpperCasePipe],
+         Γò╡             [32m~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+Output location: P:\CapStone Project\child frontend\child-insurance-app\dist\child-insurance-app
+

@@ -1,0 +1,62 @@
+<div class="max-w-2xl mx-auto space-y-6 animate-fade-in">
+  <div class="flex items-center justify-between">
+    <div>
+      <h1 class="page-header">Address Management</h1>
+      <p class="page-subheader">Manage your registered addresses</p>
+    </div>
+  </div>
+
+  @if (address()) {
+  <div class="card p-6">
+    <div class="flex items-start justify-between">
+        <div class="flex items-start gap-4">
+        <div class="w-12 h-12 bg-primary-maroon/10 rounded-xl flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5 text-primary-maroon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+        </div>
+        <div>
+          <p class="font-semibold text-dark-gray">{{ address()!.street }}</p>
+          <p class="text-medium-gray">{{ address()!.city }}, {{ address()!.state }} - {{ address()!.pincode }}</p>
+        </div>
+      </div>
+      <button (click)="editing.set(true)" class="btn-secondary btn-sm">Edit</button>
+    </div>
+  </div>
+  }
+
+  @if (!address() || editing()) {
+  <div class="card p-8">
+    <h3 class="font-bold text-dark-gray mb-5">{{ address() ? 'Edit Address' : 'Add Address' }}</h3>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-5">
+      <div>
+        <label for="street" class="form-label">Street Address</label>
+        <input type="text" id="street" name="street" formControlName="street" class="form-input"
+          placeholder="123, Main Street, Apartment 4B">
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div>
+          <label for="city" class="form-label">City</label>
+          <input type="text" id="city" name="city" formControlName="city" class="form-input" placeholder="Bangalore">
+        </div>
+        <div>
+          <label for="state" class="form-label">State</label>
+          <select id="state" name="state" formControlName="state" class="form-select">
+            <option value="">Select State</option>
+            @for (s of states; track s) { <option [value]="s">{{ s }}</option> }
+          </select>
+        </div>
+        <div>
+          <label for="pincode" class="form-label">Pincode</label>
+          <input type="text" id="pincode" name="pincode" formControlName="pincode" class="form-input"
+            placeholder="560001" maxlength="6">
+        </div>
+      </div>
+      <div class="flex gap-3">
+        <button type="submit" class="btn-primary" [disabled]="loading() || form.invalid">
+          @if (loading()) { Saving... } @else { Save Address }
+        </button>
+        @if (editing()) { <button type="button" (click)="editing.set(false)" class="btn-secondary">Cancel</button> }
+      </div>
+    </form>
+  </div>
+  }
+</div>

@@ -1,0 +1,41 @@
+<!-- How It Works Section -->
+<section class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Header -->
+    <div class="text-center mb-14">
+      <p class="text-primary-maroon text-sm font-semibold uppercase tracking-widest mb-3">How It Works</p>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-dark-gray mb-4">
+        Plans Tailored
+        <span class="text-primary-maroon"> Just for Your Child</span>
+      </h2>
+      <p class="text-medium-gray text-lg max-w-2xl mx-auto">
+        Our platform creates a personalised insurance roadmap based on your child's unique education journey in just 3 simple steps.
+      </p>
+    </div>
+
+    <!-- Steps Grid -->
+    <div class="grid sm:grid-cols-3 gap-8 mb-12">
+      @for (step of steps; track step.number) {
+        <div class="text-center px-4">
+          <!-- Step number -->
+          <div class="w-12 h-12 rounded-full bg-primary-maroon text-white font-extrabold text-lg flex items-center justify-center mx-auto mb-4">
+            {{ step.number }}
+          </div>
+          <h3 class="text-base font-bold text-dark-gray mb-2">{{ step.title }}</h3>
+          <p class="text-medium-gray text-sm leading-relaxed">{{ step.description }}</p>
+        </div>
+      }
+    </div>
+
+    <div class="text-center">
+      <button
+        (click)="scrollToQuote()"
+        class="px-8 py-3.5 bg-primary-maroon text-white font-semibold rounded-lg hover:bg-deep-maroon transition-colors duration-200"
+      >
+        Start Building My Plan
+      </button>
+    </div>
+
+  </div>
+</section>

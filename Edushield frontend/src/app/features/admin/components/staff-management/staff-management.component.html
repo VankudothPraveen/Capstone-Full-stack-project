@@ -1,0 +1,120 @@
+<div class="space-y-6 animate-fade-in">
+  <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+    <div>
+      <h1 class="page-header">Staff Management</h1>
+      <p class="page-subheader">Create and manage Underwriter and Claims Officer accounts</p>
+    </div>
+    <div class="flex gap-3">
+      <button (click)="openCreateModal('UNDERWRITER')" class="btn-primary flex items-center gap-2">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+        New Underwriter
+      </button>
+      <button (click)="openCreateModal('CLAIMS_OFFICER')" class="bg-indigo-600 text-white px-4 py-2 rounded-xl text-sm font-semibold hover:bg-indigo-700 transition-all shadow-sm flex items-center gap-2">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+        New Claims Officer
+      </button>
+    </div>
+  </div>
+
+  <div class="card overflow-hidden">
+    @if (isLoading()) {
+    <div class="p-8 text-center text-medium-gray text-sm">
+      <span class="inline-block animate-spin mr-2">⏳</span> Loading staff list...
+    </div>
+    } @else if (users().length === 0) {
+    <div class="p-12 text-center">
+        <div class="bg-gray-50 inline-flex p-4 rounded-full mb-4">
+            <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+        </div>
+        <h3 class="text-lg font-semibold text-dark-gray">No staff members found</h3>
+        <p class="text-medium-gray text-sm">Create your first staff account using the buttons above.</p>
+    </div>
+    } @else {
+    <div class="overflow-x-auto">
+      <table class="table w-full">
+        <thead>
+          <tr class="text-left border-b border-gray-100">
+            <th class="px-6 py-4 font-semibold text-xs uppercase tracking-wider text-medium-gray">Name & Email</th>
+            <th class="px-6 py-4 font-semibold text-xs uppercase tracking-wider text-medium-gray">Role</th>
+            <th class="px-6 py-4 font-semibold text-xs uppercase tracking-wider text-medium-gray">Status</th>
+            <th class="px-6 py-4 font-semibold text-xs uppercase tracking-wider text-medium-gray">Created Date</th>
+            <th class="px-6 py-4 font-semibold text-xs uppercase tracking-wider text-medium-gray text-right">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (user of users(); track user.userId) {
+          <tr class="hover:bg-gray-50/50 transition-colors border-b border-gray-50 last:border-0">
+            <td class="px-6 py-4">
+                <div class="font-medium text-dark-gray">{{ user.name }}</div>
+                <div class="text-medium-gray text-xs">{{ user.email }}</div>
+            </td>
+            <td class="px-6 py-4">
+              <span class="badge"
+                [class]="(user.role === 'ROLE_UNDERWRITER' || user.role === 'UNDERWRITER') ? 'badge-gold' : 'badge-info'">
+                {{ (user.role || '').replace('ROLE_', '').replace('_', ' ') }}
+              </span>
+            </td>
+            <td class="px-6 py-4">
+                <span [class]="user.isActive ? 'text-green-600 bg-green-50' : 'text-red-600 bg-red-50'" class="px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
+                    {{ user.isActive ? 'Active' : 'Inactive' }}
+                </span>
+            </td>
+            <td class="px-6 py-4 text-medium-gray text-sm">
+                {{ user.createdAt ? (user.createdAt | date:'dd MMM yyyy') : 'N/A' }}
+            </td>
+            <td class="px-6 py-4 text-right">
+                <button (click)="toggleStatus(user)" 
+                  [class]="user.isActive ? 'text-red-600 hover:bg-red-50' : 'text-green-600 hover:bg-green-50'"
+                  class="px-3 py-1.5 text-xs font-bold rounded-lg transition-all">
+                  {{ user.isActive ? 'Deactivate' : 'Activate' }}
+                </button>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    }
+  </div>
+</div>
+
+<!-- Create Staff Modal -->
+@if (showCreateModal()) {
+<div class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4 animate-fade-in">
+  <div class="bg-white rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden scale-in">
+    <div class="p-8">
+        <div class="flex justify-between items-start mb-6">
+            <div>
+                <h3 class="text-xl font-bold text-dark-gray">Create Staff Account</h3>
+                <p class="text-sm text-medium-gray">Role: <span class="font-bold text-indigo-600">{{ newStaff.role.replace('_', ' ') }}</span></p>
+            </div>
+            <button (click)="showCreateModal.set(false)" class="text-medium-gray hover:text-dark-gray transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+        </div>
+
+        <div class="space-y-4">
+          <div class="group">
+            <label class="text-xs font-bold text-medium-gray uppercase tracking-widest mb-1 block group-focus-within:text-primary transition-colors">Full Name</label>
+            <input type="text" class="form-input" placeholder="e.g. John Doe" [(ngModel)]="newStaff.name">
+          </div>
+          <div class="group">
+            <label class="text-xs font-bold text-medium-gray uppercase tracking-widest mb-1 block group-focus-within:text-primary transition-colors">Business Email</label>
+            <input type="email" class="form-input" placeholder="john@insurance.com" [(ngModel)]="newStaff.email">
+          </div>
+          <div class="group">
+            <label class="text-xs font-bold text-medium-gray uppercase tracking-widest mb-1 block group-focus-within:text-primary transition-colors">Access Password</label>
+            <input type="password" class="form-input" placeholder="Min 6 characters" [(ngModel)]="newStaff.password">
+          </div>
+        </div>
+
+        <div class="flex gap-3 mt-10">
+          <button (click)="showCreateModal.set(false)" class="flex-1 px-4 py-3 rounded-2xl text-sm font-bold text-medium-gray hover:bg-gray-50 transition-all border border-gray-100">Cancel</button>
+          <button (click)="createStaff()" class="flex-1 btn-primary py-3" [disabled]="creating()">
+            @if (creating()) { Creating... } @else { Create Account }
+          </button>
+        </div>
+    </div>
+  </div>
+</div>
+}

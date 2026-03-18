@@ -1,0 +1,57 @@
+<!-- Sentimental Stories Section -->
+<section class="py-24 bg-[#5e0c32] overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <p class="text-accent-gold text-sm font-semibold uppercase tracking-widest mb-3">Real Families, Real Stories</p>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-4">
+        Dreams We've Helped
+        <span class="text-accent-gold"> Protect</span>
+      </h2>
+      <p class="text-white/65 text-lg max-w-2xl mx-auto">
+        Every policy is more than a number — it's a parent's promise to their child's future.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      <!-- Story 1 -->
+      <div class="relative rounded-2xl overflow-hidden group">
+        <!-- Mother teaching child - deeply emotional -->
+        <img
+          src="/parent_child_study.png"
+          alt="Mother studying with daughter"
+          class="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-500"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+        <div class="absolute bottom-6 left-6 right-6">
+          <p class="text-white/80 text-sm italic mb-2">"When I enrolled my daughter at age 3, I had no idea how much it would mean 14 years later when she got into IIT. The maturity benefit paid her first semester fees."</p>
+          <p class="text-accent-gold font-semibold text-sm">— Lakshmi R., Hyderabad</p>
+        </div>
+      </div>
+
+      <!-- Story 2 -->
+      <div class="relative rounded-2xl overflow-hidden group">
+        <!-- Proud graduate with family - emotional milestone -->
+        <img
+          src="/graduation_proud.png"
+          alt="Proud graduate with family celebrating"
+          class="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-500"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+        <div class="absolute bottom-6 left-6 right-6">
+          <p class="text-white/80 text-sm italic mb-2">"After losing my job unexpectedly, the premium waiver clause meant my son's policy stayed active. Today he's in his second year of medicine. I cannot thank you enough."</p>
+          <p class="text-accent-gold font-semibold text-sm">— Rajiv M., Chennai</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats row -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-14">
+      @for (stat of stats; track stat.label) {
+      <div class="text-center border border-white/15 rounded-xl p-5">
+        <p class="text-3xl font-extrabold text-accent-gold mb-1">{{ stat.value }}</p>
+        <p class="text-white/60 text-sm">{{ stat.label }}</p>
+      </div>
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,119 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-50 px-4 py-12">
+  <div class="w-full max-w-lg">
+    <div class="text-center mb-8">
+      <div class="w-16 h-16 bg-maroon-gradient rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-maroon">
+        <svg class="w-9 h-9 text-white" fill="currentColor" viewBox="0 0 20 20">
+          <path
+            d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z" />
+        </svg>
+      </div>
+      <h1 class="text-3xl font-extrabold text-primary-maroon mb-2 tracking-tight">
+        Edu<span class="text-accent-gold">Shield</span>
+      </h1>
+      <h2 class="text-xl font-bold text-dark-gray">Create Account</h2>
+      <p class="text-medium-gray text-sm mt-1">Start securing your child's educational future</p>
+    </div>
+
+    <div class="card p-8">
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="space-y-5">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label for="name" class="form-label">Full Name</label>
+            <input type="text" id="name" name="name" formControlName="name" class="form-input"
+              placeholder="enter full name" [class.error]="f['name'].invalid && f['name'].touched">
+            @if (f['name'].invalid && f['name'].touched) {
+            <p class="form-error">Minimum 3 characters required</p>
+            }
+          </div>
+          <div>
+            <label for="phone" class="form-label">Phone Number</label>
+            <input type="tel" id="phone" name="phone" formControlName="phone" class="form-input"
+              placeholder="enter phone number" [class.error]="f['phone'].invalid && f['phone'].touched">
+            @if (f['phone'].invalid && f['phone'].touched) {
+            <p class="form-error">Enter valid 10-digit number</p>
+            }
+          </div>
+        </div>
+
+        <div>
+          <label for="reg-email" class="form-label">Email Address</label>
+          <input type="email" id="reg-email" name="email" formControlName="email" class="form-input"
+            placeholder="enter email address" [class.error]="f['email'].invalid && f['email'].touched">
+          @if (f['email'].invalid && f['email'].touched) {
+          <p class="form-error">Please enter a valid email</p>
+          }
+        </div>
+
+        <div formGroupName="passwords">
+          <div class="mb-4">
+            <label for="reg-password" class="form-label">Password</label>
+            <div class="relative">
+              <input [type]="showPwd() ? 'text' : 'password'" id="reg-password" name="password"
+                formControlName="password" class="form-input pr-11"
+                placeholder="Min 8 chars, upper, lower, number, special"
+                [class.error]="passwords.get('password')?.invalid && passwords.get('password')?.touched">
+              <button type="button" (click)="showPwd.update(v => !v)"
+                class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  @if (showPwd()) {
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" />
+                  } @else {
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  }
+                </svg>
+              </button>
+            </div>
+            <!-- Password strength bar -->
+            @if (passwords.get('password')?.value) {
+            <div class="mt-2 flex gap-1">
+              @for (i of [1,2,3,4]; track i) {
+              <div class="h-1 flex-1 rounded-full transition-colors" [class]="getStrengthColor(i)"></div>
+              }
+            </div>
+            <p class="text-xs mt-1" [class]="getStrengthClass()">{{ getStrengthLabel() }}</p>
+            }
+            @if (passwords.get('password')?.invalid && passwords.get('password')?.touched) {
+            <p class="form-error">Password must be 8+ characters with upper, lower, number & special character</p>
+            }
+          </div>
+
+          <div>
+            <label for="confirmPassword" class="form-label">Confirm Password</label>
+            <input [type]="showPwd() ? 'text' : 'password'" id="confirmPassword" name="confirmPassword"
+              formControlName="confirmPassword" class="form-input" placeholder="Re-enter your password"
+              [class.error]="passwords.errors?.['mismatch'] && passwords.get('confirmPassword')?.touched">
+            @if (passwords.errors?.['mismatch'] && passwords.get('confirmPassword')?.touched) {
+            <p class="form-error">Passwords do not match</p>
+            }
+          </div>
+        </div>
+
+        @if (errorMsg()) {
+        <div class="bg-red-50 border border-red-200 rounded-lg px-4 py-3 text-red-700 text-sm">{{ errorMsg() }}</div>
+        }
+
+        <button type="submit" class="btn-primary w-full btn-lg" [disabled]="loading() || registerForm.invalid">
+          @if (loading()) {
+          <span class="flex items-center justify-center gap-2">
+            <svg class="animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+            </svg>
+            Creating account...
+          </span>
+          } @else {
+          Create Account →
+          }
+        </button>
+      </form>
+
+      <p class="text-center text-sm text-medium-gray mt-6">
+        Already have an account?
+        <a routerLink="/auth/login" class="text-primary-maroon font-semibold hover:underline ml-1">log in here </a>
+      </p>
+    </div>
+  </div>
+</div>

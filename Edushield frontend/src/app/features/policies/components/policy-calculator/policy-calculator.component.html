@@ -1,0 +1,94 @@
+<div class="space-y-6 animate-fade-in">
+  <div>
+    <h1 class="page-header">Benefit Calculator</h1>
+    <p class="page-subheader">Estimate your child's education fund at maturity</p>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <!-- Calculator Inputs -->
+    <div class="card p-6 space-y-5">
+      <h3 class="font-bold text-dark-gray">Enter Policy Details</h3>
+
+      <div>
+        <label for="policySelect" class="form-label">Select Policy</label>
+        <select id="policySelect" name="policyId" [(ngModel)]="selectedPolicyId" class="form-select"
+          (change)="recalculate()">
+          <option [ngValue]="null">-- Select a Policy --</option>
+          @for (p of allPolicies(); track p.policyId) {
+          @if (p.isActive) { <option [value]="p.policyId">{{ p.policyName }}</option> }
+          }
+        </select>
+      </div>
+
+      <div>
+        <label for="premRange" class="form-label">Monthly Premium: <strong class="text-primary-maroon">₹{{ premium()
+            }}</strong></label>
+        <input type="range" id="premRange" name="premium" [(ngModel)]="premiumSlider" (input)="recalculate()" min="1000"
+          max="15000" step="500"
+          class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary-maroon">
+        <div class="flex justify-between text-xs text-medium-gray mt-1">
+          <span>₹1,000</span><span>₹15,000</span>
+        </div>
+      </div>
+
+      <div>
+        <label for="durRange" class="form-label">Policy Duration: <strong class="text-primary-maroon">{{ duration() }}
+            years</strong></label>
+        <input type="range" id="durRange" name="duration" [(ngModel)]="durationSlider" (input)="recalculate()" min="5"
+          max="25" step="1"
+          class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary-maroon">
+        <div class="flex justify-between text-xs text-medium-gray mt-1">
+          <span>5 yrs</span><span>25 yrs</span>
+        </div>
+      </div>
+
+      <div>
+        <label for="brRange" class="form-label">Bonus Rate: <strong class="text-primary-maroon">{{ bonusRate()
+            }}%</strong></label>
+        <input type="range" id="brRange" name="bonusRate" [(ngModel)]="bonusSlider" (input)="recalculate()" min="5"
+          max="20" step="1"
+          class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary-maroon">
+      </div>
+
+      <!-- Result Card -->
+      <div class="bg-maroon-gradient rounded-xl p-5 text-white mt-4">
+        <p class="text-white/70 text-xs mb-1">Estimated Maturity Benefit</p>
+        <p class="text-3xl font-bold">₹{{ maturityBenefit() | number }}</p>
+        <div class="mt-3 grid grid-cols-3 gap-3 text-center">
+          <div>
+            <p class="text-white/60 text-[10px]">Total Paid</p>
+            <p class="font-semibold text-sm">₹{{ totalPaid() | number }}</p>
+          </div>
+          <div>
+            <p class="text-white/60 text-[10px]">Bonus</p>
+            <p class="font-semibold text-sm text-accent-gold">₹{{ bonusAmount() | number }}</p>
+          </div>
+          <div>
+            <p class="text-white/60 text-[10px]">Returns</p>
+            <p class="font-semibold text-sm text-emerald-300">{{ returnPct() }}%</p>
+          </div>
+        </div>
+      </div>
+
+      <a routerLink="/applications/apply" class="btn-primary w-full text-center block">Apply for This Policy →</a>
+    </div>
+
+    <!-- Projection Chart -->
+    <div class="card p-6">
+      <h3 class="font-bold text-dark-gray mb-4">Growth Projection</h3>
+      <canvas #projChart></canvas>
+      <div class="mt-4 space-y-2">
+        @for (proj of projections(); track proj.year) {
+        <div class="flex items-center gap-3 text-sm">
+          <span class="w-16 text-medium-gray">Year {{ proj.year }}</span>
+          <div class="flex-1 bg-gray-100 rounded-full h-2 overflow-hidden">
+            <div class="h-full bg-primary-maroon rounded-full transition-all duration-300"
+              [style.width.%]="(proj.value / maturityBenefit()) * 100"></div>
+          </div>
+          <span class="font-semibold text-dark-gray w-24 text-right">₹{{ (proj.value/1000).toFixed(0) }}K</span>
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>

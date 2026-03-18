@@ -1,0 +1,155 @@
+<div class="min-h-screen flex bg-gray-50">
+  <!-- Back to Home Button -->
+  <a routerLink="/"
+    class="absolute top-6 left-6 z-20 flex items-center gap-2 text-medium-gray hover:text-primary-maroon transition-colors group">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+    </svg>
+    <span class="text-sm font-medium">Back to Home</span>
+  </a>
+
+  <!-- Left Panel -->
+  <div class="hidden lg:flex lg:w-1/2 flex-col items-center justify-center p-8 relative overflow-hidden bg-[#FAFAF8]">
+    <!-- Display background image perfectly clear with no scaling out of frame -->
+    <div class="absolute inset-0 bg-cover bg-no-repeat origin-top"
+      style="background-image: url('/image%20copy.png'); background-position: center top;"></div>
+
+    <!-- Text content strictly overlaid without bounding boxes -->
+    <div class="relative z-10 w-full max-w-lg flex flex-col items-center text-center">
+      <!-- Logo -->
+      <div class="w-20 h-20 bg-accent-gold rounded-2xl flex items-center justify-center mb-6 shadow-sm">
+        <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 20 20">
+          <path
+            d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zm5.99 7.176A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z" />
+        </svg>
+      </div>
+      <h1 class="text-[40px] font-extrabold text-primary-maroon mb-1 tracking-tighter">
+        Edu<span class="text-accent-gold">Shield</span>
+      </h1>
+      <p class="text-medium-gray font-semibold text-lg mb-6">Child Education Insurance</p>
+      <p class="text-medium-gray text-base mb-10">Secure your child's educational future today</p>
+
+      <div class="space-y-4 w-full px-4 sm:px-10">
+        @for (feature of features; track feature.title) {
+        <div
+          class="flex items-center gap-5 bg-white/20 backdrop-sm rounded-[1rem] p-5 text-left shadow-[0_4px_8px_rgba(0,0,0,0.2)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.04)] transition-colors">
+          <div class="w-8 h-8 bg-primary-maroon/20 rounded-lg flex items-center justify-center flex-shrink-0">
+            <p class="text-sm font-bold text-primary-maroon">{{ feature.icon }}</p>
+          </div>
+          <div>
+            <p class="text-dark-gray font-bold text-[15px] mb-0.5">{{ feature.title }}</p>
+            <p class="text-medium-gray text-[13px]">{{ feature.desc }}</p>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- Right Panel: Login Form -->
+  <div class="flex-1 flex items-center justify-center px-6 py-12">
+    <div class="w-full max-w-md">
+      <!-- Mobile Logo -->
+      <div class="lg:hidden text-center mb-8">
+        <div
+          class="w-16 h-16 bg-maroon-gradient rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-maroon">
+          <svg class="w-9 h-9 text-white" fill="currentColor" viewBox="0 0 20 20">
+            <path
+              d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z" />
+          </svg>
+        </div>
+        <h1 class="text-2xl font-extrabold text-primary-maroon tracking-tight">
+          Edu<span class="text-accent-gold">Shield</span>
+        </h1>
+      </div>
+
+      <div class="card p-8">
+        <h2 class="text-2xl font-bold text-dark-gray mb-2">Welcome back!</h2>
+        <p class="text-medium-gray text-sm mb-8">Sign in to manage your child's education plan</p>
+
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-5">
+          <div>
+            <label for="email" class="form-label">Email Address</label>
+            <input type="email" id="email" name="email" formControlName="email" class="form-input"
+              placeholder="enter registered email address"
+              [class.error]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+            @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
+            <p class="form-error">Please enter a valid email address</p>
+            }
+          </div>
+
+          <div>
+            <div class="flex items-center justify-between mb-1.5">
+              <label for="password" class="form-label !mb-0">Password</label>
+              <a routerLink="/auth/forgot-password"
+                class="text-xs text-primary-maroon hover:underline font-medium">Forgot
+                password?</a>
+            </div>
+            <div class="relative">
+              <input [type]="showPassword() ? 'text' : 'password'" id="password" name="password"
+                formControlName="password" class="form-input pr-11" placeholder="Enter your password"
+                [class.error]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+              <button type="button" (click)="showPassword.update(v => !v)"
+                class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  @if (showPassword()) {
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" />
+                  } @else {
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  }
+                </svg>
+              </button>
+            </div>
+            @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+            <p class="form-error">Password is required</p>
+            }
+          </div>
+
+          @if (errorMsg()) {
+          <div class="bg-red-50 border border-red-200 rounded-lg px-4 py-3 text-red-700 text-sm">
+            {{ errorMsg() }}
+          </div>
+          }
+
+          <button type="submit" class="btn-primary w-full btn-lg" [disabled]="loading() || loginForm.invalid">
+            @if (loading()) {
+            <span class="flex items-center justify-center gap-2">
+              <svg class="animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+              </svg>
+              Signing in...
+            </span>
+            } @else {
+            Sign In →
+            }
+          </button>
+
+          <!-- Divider -->
+          <div class="relative my-6">
+            <div class="absolute inset-0 flex items-center">
+              <div class="w-full border-t border-gray-200"></div>
+            </div>
+            <div class="relative flex justify-center text-xs uppercase">
+              <span class="px-2 bg-white text-medium-gray">Or continue with</span>
+            </div>
+          </div>
+
+          <!-- Google Login Button (Official library component for GSI compatibility) -->
+          <div class="flex justify-center w-full mt-4">
+            <asl-google-signin-button type="standard" shape="rectangular" size="large" width="450" text="continue_with"></asl-google-signin-button>
+          </div>
+        </form>
+
+        <p class="text-center text-sm text-medium-gray mt-6">
+          Don't have an account?
+          <a routerLink="/auth/register" class="text-primary-maroon font-semibold hover:underline ml-1">Create
+            account</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
